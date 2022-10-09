@@ -1,0 +1,32 @@
+section {
+    margin-top: 1.5em;
+}
+
+.tag_label {
+    padding: 0.2rem 0.5rem;
+    border: solid 0.1rem #666666;
+    border-radius: 0.25rem;
+}
+
+.tag_checkbox {
+    display: none;
+}
+
+.tag_checkbox:checked + .tag_label {
+    background-color: #666666;
+    color: white;
+}
+
+.good {
+    border: solid 0.1rem crimson;
+    background-color: white;
+    border-radius: 0.25rem;
+    color: crimson;
+}
+
+.not_good {
+    border: solid 0.1rem #cccccc;
+    background-color: white;
+    border-radius: 0.25rem;
+    color: #cccccc;
+}

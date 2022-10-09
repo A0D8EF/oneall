@@ -1,0 +1,13 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+    border-bottom: solid 0.2rem #288c66;
+    box-shadow: 0 0.1rem rgba(0, 0, 0, 0.15);
+}
+
+main {
+    width: 95%;
+    margin: 0.5rem auto 0 auto;
+}
