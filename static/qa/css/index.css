@@ -2,22 +2,24 @@ section {
     margin-top: 1.5em;
 }
 
+/* タグ */
 .tag_label {
     padding: 0.2rem 0.5rem;
-    border: solid 0.1rem #666666;
+    border: solid 0.1rem var(--tag-color);
     border-radius: 0.25rem;
+    cursor: pointer;
 }
-
 .tag_checkbox {
     display: none;
 }
-
 .tag_checkbox:checked + .tag_label {
-    background-color: #666666;
+    background-color: var(--tag-color);
     color: white;
 }
 
+/* いいね */
 .good {
+    padding: 0.2rem 0.5rem;
     border: solid 0.1rem crimson;
     background-color: white;
     border-radius: 0.25rem;
@@ -25,6 +27,7 @@ section {
 }
 
 .not_good {
+    padding: 0.2rem 0.5rem;
     border: solid 0.1rem #cccccc;
     background-color: white;
     border-radius: 0.25rem;

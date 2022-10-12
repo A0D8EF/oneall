@@ -72,6 +72,8 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 # Application definition
 
 INSTALLED_APPS = [
+    "users.apps.UsersConfig",
+
     "oneall.apps.OneallConfig",
     "qa.apps.QaConfig",
     "qa.templatetags.custom_tag",
@@ -90,6 +92,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+AUTH_USER_MODEL = "users.CustomUser"
+ACCOUNT_FORMS   = {"signup": "users.forms.SignupForm"}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

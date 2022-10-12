@@ -9,8 +9,8 @@ from .forms import QuestionTagForm, QuestionForm
 
 class IndexView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
-        context = {}
-        context["tags"]         = Tag.objects.all()
+        context         = {}
+        context["tags"] = Tag.objects.all()
 
         query   = Q()
         if "search" in request.GET:
@@ -27,7 +27,6 @@ class IndexView(LoginRequiredMixin,View):
         if form.is_valid():
             cleaned         = form.clean()
             selected_tags   = cleaned["tag"] #Tagモデルオブジェクトのリスト型
-            print(selected_tags)
 
             for tag in selected_tags:
                 questions   = [ question for question in questions if tag in question.tag.all() ]

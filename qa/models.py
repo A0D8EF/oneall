@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.conf import settings
 
 from django.utils import timezone
 
@@ -19,10 +20,10 @@ class Question(models.Model):
     content = models.CharField(verbose_name="内容", max_length=2000)
 
     dt      = models.DateTimeField(verbose_name="投稿日時", default=timezone.now)
-    user    = models.ForeignKey(User, verbose_name="投稿者", on_delete=models.CASCADE)
+    user    = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="投稿者", on_delete=models.CASCADE)
 
-    tag     = models.ManyToManyField(Tag, related_name="question_tag", verbose_name="タグ")
-    good    = models.ManyToManyField(User, related_name="question_good", verbose_name="いいねしたユーザー")
+    tag     = models.ManyToManyField(Tag, related_name="question_tag", verbose_name="タグ", blank=True)
+    good    = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="question_good", verbose_name="いいねしたユーザー", blank=True)
 
     def __str__(self):
         return self.title
