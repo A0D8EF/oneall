@@ -1,0 +1,24 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+{% load custom_tag %}
+{% load count_good %}
+
+
+{% block extra_head %}
+<title>チャット －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'chat/css/index.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<h1>チャット</h1>
+<div>
+    {% for chat_group in chat_groups %}
+    <div class="border">
+        {% for member in chat_group.member.all %}
+        {{member}} 
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

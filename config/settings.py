@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "qa.apps.QaConfig",
     "qa.templatetags.custom_tag",
     "qa.templatetags.count_good",
+    "chat.apps.ChatConfig",
 
     # django-allauth
     'django.contrib.sites',
@@ -110,7 +111,10 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / "templates" ],
+        'DIRS': [
+            BASE_DIR / "templates",
+            BASE_DIR / "allauth",
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

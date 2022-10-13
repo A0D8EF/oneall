@@ -16,21 +16,20 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name='ChatGroup',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=10, verbose_name='タグ名')),
+                ('dt', models.DateTimeField(default=django.utils.timezone.now, verbose_name='グループ作成日')),
+                ('member', models.ManyToManyField(to=settings.AUTH_USER_MODEL, verbose_name='グループ内メンバー')),
             ],
         ),
         migrations.CreateModel(
-            name='Question',
+            name='Chat',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100, verbose_name='タイトル')),
-                ('content', models.CharField(max_length=2000, verbose_name='内容')),
-                ('dt', models.DateTimeField(default=django.utils.timezone.now, verbose_name='投稿日時')),
-                ('good', models.ManyToManyField(blank=True, related_name='question_good', to=settings.AUTH_USER_MODEL, verbose_name='いいねしたユーザー')),
-                ('tag', models.ManyToManyField(blank=True, related_name='question_tag', to='qa.tag', verbose_name='タグ')),
+                ('dt', models.DateTimeField(default=django.utils.timezone.now, verbose_name='グループ作成日')),
+                ('message', models.CharField(max_length=20000, verbose_name='メッセージ')),
+                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='chat.chatgroup', verbose_name='所属チャットグループ')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='投稿者')),
             ],
         ),

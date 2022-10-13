@@ -45,7 +45,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
 
-    dt          = models.DateTimeField(_("date joined"), default=timezone.now)
+    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     objects     = UserManager()
 
@@ -60,7 +60,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def clean(self):
         super().clean()
-        self.email  = self.__class__objects.normalize_email(self.email)
+        self.email  = self.__class__.objects.normalize_email(self.email)
     
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
