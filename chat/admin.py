@@ -1,8 +1,11 @@
 from django.contrib import admin
 
 from .models import Chat, ChatGroup
+from .forms import ChatGroupForm
 
 class ChatGroupAdmin(admin.ModelAdmin):
+
+    form = ChatGroupForm
 
     list_display    = ["id", "dt", "members"]
 

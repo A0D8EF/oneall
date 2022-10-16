@@ -7,18 +7,28 @@
 {% block extra_head %}
 <title>チャット －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'chat/css/index.css' %}">
+
+<script src="{% static 'chat/js/script.js' %}"></script>
 {% endblock %}
 
 
 {% block main %}
 <h1>チャット</h1>
-<div>
-    {% for chat_group in chat_groups %}
-    <div class="border">
-        {% for member in chat_group.member.all %}
-        {{member}} 
+<div class="row mx-0">
+    <div class="col-4">
+        {% for chat_group in chat_groups %}
+        <label class="chat_group_area">
+            <div>
+                {% for member in chat_group.member.all %}
+                {{ member.handle_name }} 
+                {% endfor %}
+            </div>
+            <button class="chat_area_btn" style="display:none;" value="{% url 'chat:chat_message' chat_group.id %}"></button>
+        </label>
         {% endfor %}
     </div>
-    {% endfor %}
+    <div class="col-8" id="chat_area">
+        
+    </div>
 </div>
 {% endblock %}

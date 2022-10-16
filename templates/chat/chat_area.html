@@ -1,0 +1,22 @@
+{% for chat in chat_group.chats %}
+<div class="{% if chat.user.id == request.user.id %}my{% else %}others{% endif %}_speech_bubble_area">
+    <div class="chat_speeker">{{ chat.user.handle_name }}</div>
+    <div class="speech_bubble">
+        <div>{{ chat.message|linebreaksbr|urlize }}</div>
+    </div>
+    <div class="chat_date">{{ chat.dt|date:'Y/m/d H:i' }}</div>
+</div>
+{% comment %}
+<div class="border">
+    <div>{{ chat.user.handle_name }}</div>
+    <div>{{ chat.dt| }}</div>
+    <div>{{ chat.message|linebreaksbr|urlize }}</div>
+</div>
+{% endcomment %}
+{% endfor %}
+
+<form id="chat_form_area" action="{% url 'chat:chat_message' chat_group.id %}" method="POST">
+    {% csrf_token %}
+    <textarea name="message" class="form-control"></textarea>
+    <input id="message_submit" type="button" value="送信" class="btn btn-outline-primary">
+</form>

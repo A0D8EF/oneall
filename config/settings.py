@@ -66,6 +66,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 #     #Sendgrid利用時はサンドボックスモードを無効化しておく。
 #     SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+EMAIL_BACKEND   = "django.core.mail.backends.console.EmailBackend"
 
 ################# django-allauthでのメール認証設定ここまで ###################
 

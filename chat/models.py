@@ -10,7 +10,15 @@ class ChatGroup(models.Model):
     member  = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="グループ内メンバー")
 
     def chats(self):
-        return Chat.objects.filter(group=self.id).order_by("-dt")
+        return Chat.objects.filter(group=self.id).order_by("dt")
+
+    # チャットグループをメッセージの新着順に並べる
+    def latest_message(self):
+        chat    = Chat.objects.filter(group=self.id).order_by("-dt").first()
+        if chat:
+            return chat.dt
+        else:
+            return self.dt
 
 
 class Chat(models.Model):
