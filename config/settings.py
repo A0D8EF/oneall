@@ -80,6 +80,8 @@ INSTALLED_APPS = [
     "qa.templatetags.custom_tag",
     "qa.templatetags.count_good",
     "chat.apps.ChatConfig",
+    "news.apps.NewsConfig",
+    "news.templatetags.param_change",
 
     # django-allauth
     'django.contrib.sites',

@@ -14,21 +14,23 @@
 
 {% block main %}
 <h1>チャット</h1>
-<div class="row mx-0">
-    <div class="col-4">
-        {% for chat_group in chat_groups %}
-        <label class="chat_group_area">
-            <div>
-                {% for member in chat_group.member.all %}
-                {{ member.handle_name }} 
-                {% endfor %}
-            </div>
-            <button class="chat_area_btn" style="display:none;" value="{% url 'chat:chat_message' chat_group.id %}"></button>
-        </label>
-        {% endfor %}
+<section>
+    <div class="row mx-0">
+        <div class="col-4">
+            {% for chat_group in chat_groups %}
+            <label class="chat_group_area">
+                <div>
+                    {% for member in chat_group.member.all %}
+                    {{ member.handle_name }} 
+                    {% endfor %}
+                </div>
+                <button class="chat_area_btn" style="display:none;" value="{% url 'chat:chat_message' chat_group.id %}"></button>
+            </label>
+            {% endfor %}
+        </div>
+        <div class="col-8" id="chat_area">
+            
+        </div>
     </div>
-    <div class="col-8" id="chat_area">
-        
-    </div>
-</div>
+</section>
 {% endblock %}

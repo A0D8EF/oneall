@@ -12,64 +12,71 @@
 
 {% block main %}
 <h1>Q&A</h1>
-<section>
-    <h3>質問投稿</h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input class="form-control" type="text" name="title" placeholder="タイトル" required>
-        <div>
-            {% for tag in tags %}
-            <input type="checkbox" name="tag" value="{{ tag.id }}" id="post_tag_checkbox_{{ tag.id }}" class="tag_checkbox">
-            <label class="tag_label" for="post_tag_checkbox_{{ tag.id }}">{{ tag.name }}</label>
-            {% endfor %}
-        </div>
-        <textarea class="form-control" name="content" placeholder="質問を記入してください" required></textarea>
-        <button type="submit" class="btn btn-outline-primary">送信</button>
-    </form>
-</section>
-<section>
-    <h3>検索</h3>
-    <form action="" method="GET">
-        <div>
-            {% for tag in tags %}
-            <input type="checkbox" name="tag" value="{{ tag.id }}" {% tag_checked request tag.id %} id="search_tag_checkbox_{{ tag.id }}" class="tag_checkbox">
-            <label class="tag_label" for="search_tag_checkbox_{{ tag.id }}">{{ tag.name }}</label>
-            {% endfor %}
-        </div>
-        <div class="input-group">
-            <input class="form-control" type="text" name="search" placeholder="タイトルのキーワードを入力">
-            <div class="input-group-append">
-                <button type="submit" class="form-control btn btn-outline-primary">検索</button>
+<div class="row">
+    <div class="col-8">
+        <section>
+            <h2>質問投稿</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="text" name="title" placeholder="タイトル" required>
+                <div>
+                    {% for tag in tags %}
+                    <input type="checkbox" name="tag" value="{{ tag.id }}" id="post_tag_checkbox_{{ tag.id }}" class="tag_checkbox">
+                    <label class="tag_label" for="post_tag_checkbox_{{ tag.id }}">{{ tag.name }}</label>
+                    {% endfor %}
+                </div>
+                <textarea class="form-control" name="content" placeholder="質問を記入してください" required></textarea>
+                <button type="submit" class="btn btn-outline-primary">送信</button>
+            </form>
+        </section>
+        <section>
+            <h2>質問一覧</h2>
+            {% for question in questions %}
+            <div class="border p-2 question-list-content">
+                <h3>{{ question.title }}</h3>
+                <div>{{ question.dt }}</div>
+                <div>{{ question.user }}</div>
+                <div>
+                    {% for tag in question.tag.all %}
+                    <label class="tag_label">{{ tag.name }}</label>        
+                    {% endfor %}
+                </div>
+                <div>{{ question.content|linebreaksbr }}</div>
+                <form action="{% url 'qa:good' question.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="{% if request.user not in question.good.all %}not_{% endif %}good">
+                        {% if request.user in question.good.all %}
+                        <i class="fas fa-heart" style="color:crimson;"></i>
+                        {% else %}
+                        <i class="far fa-heart" style="color:#cccccc;"></i>
+                        {% endif %}
+                        いいね　{% count_good question.good.all %}
+                    </button>
+                </form>
             </div>
-        </div>
-    </form>
-</section>
-<section>
-    <h3>質問一覧</h3>
-    {% for question in questions %}
-    <div class="border p-2 question-list-content">
-        <h3>{{ question.title }}</h3>
-        <div>{{ question.dt }}</div>
-        <div>{{ question.user }}</div>
-        <div>
-            {% for tag in question.tag.all %}
-            <label class="tag_label">{{ tag.name }}</label>        
             {% endfor %}
-        </div>
-        <div>{{ question.content|linebreaksbr }}</div>
-        <form action="{% url 'qa:good' question.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="{% if request.user not in question.good.all %}not_{% endif %}good">
-                {% if request.user in question.good.all %}
-                <i class="fas fa-heart" style="color:crimson;"></i>
-                {% else %}
-                <i class="far fa-heart" style="color:#cccccc;"></i>
-                {% endif %}
-                いいね　{% count_good question.good.all %}
-            </button>
-        </form>
+        </section>
     </div>
-    {% endfor %}
-</section>
+
+    <div class="col-4">
+        <section>
+            <h2>検索</h2>
+            <form action="" method="GET">
+                <div>
+                    {% for tag in tags %}
+                    <input type="checkbox" name="tag" value="{{ tag.id }}" {% tag_checked request tag.id %} id="search_tag_checkbox_{{ tag.id }}" class="tag_checkbox">
+                    <label class="tag_label" for="search_tag_checkbox_{{ tag.id }}">{{ tag.name }}</label>
+                    {% endfor %}
+                </div>
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search" placeholder="タイトルのキーワードを入力" value="{{ request.GET.search }}">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-outline-primary">検索</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
 
 {% endblock %}

@@ -2,6 +2,7 @@
     --main-color: #288c66;
     --accent-color: #288c66;
     --tag-color: #666666;
+    --border-color: #666666;
 }
 
 header {
@@ -46,4 +47,18 @@ nav > a:hover {
 main {
     width: 95%;
     margin: 4rem auto 0 auto;
+}
+
+section {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5rem;
 }

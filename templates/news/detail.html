@@ -1,0 +1,20 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<title>NEWS －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'news/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'news/css/detail.css' %}">
+{% endblock %}
+
+{% block main %}
+<h1>NEWS</h1>
+<div class="news_detail_content border">
+    <h3>{{ news.title }}</h3>
+    <label class="news_category_label">{{ news.category.name }}</label>
+    <div>{{ news.user.handle_name }}</div>
+    <div>{{ news.dt|date:'Y/m/d' }}</div>
+    <div>{{ news.content }}</div>
+</div>
+{% endblock %}
