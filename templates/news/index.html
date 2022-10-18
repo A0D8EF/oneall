@@ -39,7 +39,7 @@
         {% for news in newses %}
         <a class="news_list_content border d-flex flex-wrap align-items-center" href="{% url 'news:detail' news.id %}">
             <div class="news_dt">{{ news.dt|date:'Y/m/d' }}</div>
-            <div class="news_category"><label class="news_category_label">{{ news.category.name }}</label></div>
+            <div class="news_category"><label class="news_category_label">{{ news.category.name|default:'未分類' }}</label></div>
             <div class="news_title">{{ news.title }}</div>
         </a>
         {% endfor %}

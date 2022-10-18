@@ -45,6 +45,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
 
+    is_teacher  = models.BooleanField(verbose_name="講師", default=False)
+    is_student  = models.BooleanField(verbose_name="生徒", default=True)
+
+    icon            = models.ImageField(verbose_name="アイコン", upload_to="users/custom_user/icon/", null=True, blank=True)
+    introduction    = models.CharField(verbose_name="自己紹介文", max_length=1000, null=True, blank=True)
+
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     objects     = UserManager()

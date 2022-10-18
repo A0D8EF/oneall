@@ -19,6 +19,15 @@ class ChatGroup(models.Model):
             return chat.dt
         else:
             return self.dt
+    
+    def __str__(self):
+        members = self.member.all()
+        text    = ""
+        
+        for member in members:
+            text    += member.handle_name + " "
+        
+        return text
 
 
 class Chat(models.Model):

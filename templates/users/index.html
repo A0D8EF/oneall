@@ -1,0 +1,40 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<title>MyPAGE －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'users/css/index.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<h1>MyPAGE</h1>
+<section>
+    <h2>ユーザー情報</h2>
+    <div>{{ request.user.handle_name }}</div>
+    <div>
+        {% if request.user.icon %}
+        <img src="{{ request.user.icon.url }}" alt="アイコン画像">
+        {% endif %}
+    </div>
+    <div>{{ request.user.introduction }}</div>
+</section>
+
+<section>
+    <h2>ユーザー情報の編集</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" class="form-control" name="handle_name" value="{{ request.user.handle_name }}">
+        <input type="file" name="icon">
+        <textarea name="introduction" class="form-control" value="{{ request.user.introduction }}"></textarea>
+        <input type="submit" value="送信" class="btn btn-outline-primary">
+    </form>
+</section>
+
+<section>
+    <h2>パスワードの変更</h2>
+    <a href="{% url 'account_reset_password' %}">パスワードの変更はこちら</a>
+</section>
+
+{% endblock %}

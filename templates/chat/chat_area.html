@@ -1,18 +1,33 @@
 {% for chat in chat_group.chats %}
-<div class="{% if chat.user.id == request.user.id %}my{% else %}others{% endif %}_speech_bubble_area">
-    <div class="chat_speeker">{{ chat.user.handle_name }}</div>
-    <div class="speech_bubble">
-        <div>{{ chat.message|linebreaksbr|urlize }}</div>
+<div class="{% if chat.user.id == request.user.id %}my{% else %}others{% endif %}_chat_bubble_area chat_bubble_area">
+    {% if chat.user.id != request.user.id %}
+    <div class="icon_area">
+        {% if chat.user.icon %}
+        <img src="{{ chat.user.icon.url }}" alt="{{ chat.user.handle_name }}のアイコン">
+        {% else %}
+        <img src="" alt="画像なし">
+        {% endif %}
     </div>
-    <div class="chat_date">{{ chat.dt|date:'Y/m/d H:i' }}</div>
+    {% endif %}
+    
+    <div class="chat_area">
+        <div class="chat_speaker">{{ chat.user.handle_name }}</div>
+        <div class="chat_bubble">
+            <div>{{ chat.message|linebreaksbr|urlize }}</div>
+        </div>
+        <div class="chat_date">{{ chat.dt|date:'Y/m/d H:i' }}</div>
+    </div>
+
+    {% if chat.user.id == request.user.id %}
+    <div class="icon_area">
+        {% if request.user.icon %}
+        <img src="{{ request.user.icon.url }}" alt="{{ request.user.handle_name }}のアイコン">
+        {% else %}
+        <img src="" alt="画像なし">
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
-{% comment %}
-<div class="border">
-    <div>{{ chat.user.handle_name }}</div>
-    <div>{{ chat.dt| }}</div>
-    <div>{{ chat.message|linebreaksbr|urlize }}</div>
-</div>
-{% endcomment %}
 {% endfor %}
 
 <form id="chat_form_area" action="{% url 'chat:chat_message' chat_group.id %}" method="POST">

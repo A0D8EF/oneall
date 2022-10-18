@@ -12,9 +12,9 @@
 <h1>NEWS</h1>
 <div class="news_detail_content border">
     <h3>{{ news.title }}</h3>
-    <label class="news_category_label">{{ news.category.name }}</label>
+    <label class="news_category_label">{{ news.category.name|default:'未分類' }}</label>
     <div>{{ news.user.handle_name }}</div>
     <div>{{ news.dt|date:'Y/m/d' }}</div>
-    <div>{{ news.content }}</div>
+    <div>{{ news.content|linebreaksbr|urlize }}</div>
 </div>
 {% endblock %}

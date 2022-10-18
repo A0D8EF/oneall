@@ -8,6 +8,9 @@ from django.core.paginator import Paginator
 from .models import Category, News
 from .forms import NewsForm, CategorySearchForm
 
+from django.http import HttpResponseNotFound
+from django.template.loader import render_to_string
+
 class IndexView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         context = {}
@@ -45,8 +48,15 @@ index = IndexView.as_view()
 
 class NewsDetailView(LoginRequiredMixin,View):
     def get(self, request, pk, *args, **kwargs):
-        context         = {}        
-        context["news"] = News.objects.filter(id=pk).first()
+        context         = {}
+
+        news    = News.objects.filter(id=pk).first()
+        if not news:
+
+            # return redirect("news:index")
+            return HttpResponseNotFound(render_to_string("oneall/notfound.html"))
+        
+        context["news"] = news
 
         return render(request, "news/detail.html", context)
 

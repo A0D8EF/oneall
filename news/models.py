@@ -21,7 +21,6 @@ class News(models.Model):
     dt          = models.DateTimeField(verbose_name="投稿日時", default=timezone.now)
     user        = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="投稿者", on_delete=models.SET_NULL, null=True, blank=True)
 
-    # category    = models.ForeignKey(Category, verbose_name="ニュースカテゴリ", on_delete=models.SET_NULL, null=True, blank=True)
     category    = models.ForeignKey(Category, verbose_name="ニュースカテゴリ", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):

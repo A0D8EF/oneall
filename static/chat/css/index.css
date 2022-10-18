@@ -5,29 +5,45 @@
     cursor:pointer;
 }
 
-.my_speech_bubble_area{
+.chat_bubble_area {
+    display: flex;
+}
+.icon_area {
+    width: 4rem;
+}
+.chat_area {
+    width: calc(100% - 4rem);
+}
+.icon_area img {
+    margin: 0 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.my_chat_bubble_area{
     text-align:right;
     margin-top: 0.4rem;
     margin-bottom: 0.4rem;
 }
-.others_speech_bubble_area{
+.others_chat_bubble_area{
     text-align:left;
 }
-.my_speech_bubble_area .speech_bubble {
+.my_chat_bubble_area .chat_bubble {
     /* 自分が送った時は右下の角をつける */
     background:lime;
     border-bottom-right-radius:0;
     margin-top: 0;
     margin-bottom: 0;
 }
-.others_speech_bubble_area .speech_bubble {
+.others_chat_bubble_area .chat_bubble {
     /* 自分が送った時は右下の角をつける */
     background:silver;
     border-top-left-radius:0;
     margin-top: 0;
     margin-bottom: 0;
 }
-.speech_bubble{
+.chat_bubble{
     text-align:left;
     word-break:break-all;
 
@@ -38,7 +54,7 @@
     border-radius:1rem;
 }
 
-.chat_speeker {
+.chat_speaker {
     color: #444;
     font-size: 0.8rem;
     margin-bottom: 0;
