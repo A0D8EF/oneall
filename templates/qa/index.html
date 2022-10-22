@@ -34,7 +34,7 @@
         <section>
             <h2>質問一覧</h2>
             {% for question in questions %}
-            <div class="border p-2 question-list-content">
+            <a class="border p-2 question-list-content" href="{% url 'qa:detail' question.id %}">
                 <h3>{{ question.title }}</h3>
                 <div>{{ question.dt }}</div>
                 <div>{{ question.user }}</div>
@@ -43,19 +43,15 @@
                     <label class="tag_label">{{ tag.name }}</label>        
                     {% endfor %}
                 </div>
-                <div>{{ question.content|linebreaksbr }}</div>
-                <form action="{% url 'qa:good' question.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="{% if request.user not in question.good.all %}not_{% endif %}good">
-                        {% if request.user in question.good.all %}
-                        <i class="fas fa-heart" style="color:crimson;"></i>
-                        {% else %}
-                        <i class="far fa-heart" style="color:#cccccc;"></i>
-                        {% endif %}
-                        いいね　{% count_good question.good.all %}
-                    </button>
-                </form>
-            </div>
+                <label class="{% if request.user not in question.good.all %}not_{% endif %}good">
+                    {% if request.user in question.good.all %}
+                    <i class="fas fa-heart" style="color:crimson;"></i>
+                    {% else %}
+                    <i class="far fa-heart" style="color:#cccccc;"></i>
+                    {% endif %}
+                    いいね　{% count_good question.good.all %}
+                </label>
+            </a>
             {% endfor %}
         </section>
     </div>

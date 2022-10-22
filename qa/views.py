@@ -4,8 +4,8 @@ from django.views import View
 
 from django.db.models import Q
 
-from .models import Tag, Question
-from .forms import QuestionTagForm, QuestionForm
+from .models import Tag, Question, Answer
+from .forms import QuestionTagForm, QuestionForm, AnswerForm
 
 class IndexView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
@@ -49,11 +49,10 @@ class IndexView(LoginRequiredMixin,View):
 
         return redirect("qa:index")
     
-
 index = IndexView.as_view()
 
 
-class GoodView(LoginRequiredMixin,View):
+class QuestionGoodView(LoginRequiredMixin,View):
     def post(self, request, pk, *args, **kwargs):
 
         question    = Question.objects.filter(id=pk).first()
@@ -63,7 +62,50 @@ class GoodView(LoginRequiredMixin,View):
         else:
             question.good.add(request.user)
 
-        return redirect("qa:index")
+        return redirect("qa:detail", pk)
+
+question_good = QuestionGoodView.as_view()
 
 
-good = GoodView.as_view()
+class DetailView(LoginRequiredMixin,View):
+
+    def get(self, request, pk, *args, **kwargs):
+        context             = {}
+        context["tags"] = Tag.objects.all()
+        context["question"] = Question.objects.filter(id=pk).first()
+        context["answers"]  = Answer.objects.filter(target=pk).order_by("dt")
+
+        return render(request, "qa/detail.html", context)
+
+    def post(self, request, pk, *args, **kwargs):
+        copied              = request.POST.copy()
+        copied["user"]      = request.user.id
+        copied["target"]    = Question.objects.filter(id=pk).first()
+
+        form            = AnswerForm(copied)
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return redirect("qa:detail", pk)
+        
+        form.save()
+
+        return redirect("qa:detail", pk)
+
+detail = DetailView.as_view()
+
+
+class AnswerGoodView(LoginRequiredMixin,View):
+    def post(self, request, q_id, a_id, *args, **kwargs):
+
+        answer      = Answer.objects.filter(id=a_id).first()
+
+        if request.user in answer.good.all():
+            answer.good.remove(request.user)
+        else:
+            answer.good.add(request.user)
+        
+        return redirect("qa:detail", q_id)
+
+
+answer_good = AnswerGoodView.as_view()

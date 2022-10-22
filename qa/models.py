@@ -27,3 +27,15 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Answer(models.Model):
+
+    target  = models.ForeignKey(Question, verbose_name="質問", on_delete=models.CASCADE)
+    content = models.CharField(verbose_name="内容", max_length=2000)
+
+    dt      = models.DateTimeField(verbose_name="投稿日時", default=timezone.now)
+    user    = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="投稿者", on_delete=models.CASCADE)
+    
+    good    = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="answer_good", verbose_name="いいねしたユーザー", blank=True)
+

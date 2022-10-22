@@ -1,0 +1,76 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+{% load custom_tag %}
+{% load count_good %}
+
+
+{% block extra_head %}
+<title>Q&A －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'qa/css/index.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<h1>Q&A</h1>
+<div class="row">
+    <div class="col-8">
+        <section>
+            <h2>質問</h2>
+            <div class="border p-2 question-list-content">
+                <h3>{{ question.title }}</h3>
+                <div>{{ question.dt }}</div>
+                <div>{{ question.user }}</div>
+                <div>
+                    {% for tag in question.tag.all %}
+                    <label class="tag_label">{{ tag.name }}</label>        
+                    {% endfor %}
+                </div>
+                <div>{{ question.content|linebreaksbr|urlize }}</div>
+                <form action="{% url 'qa:question_good' question.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="{% if request.user not in question.good.all %}not_{% endif %}good">
+                        {% if request.user in question.good.all %}
+                        <i class="fas fa-heart" style="color:crimson;"></i>
+                        {% else %}
+                        <i class="far fa-heart" style="color:#cccccc;"></i>
+                        {% endif %}
+                        いいね　{% count_good question.good.all %}
+                    </button>
+                </form>
+            </div>
+            <h2 class="mt-2">回答</h2>
+            {% for answer in answers %}
+            <div class="border p-2 question-list-content">
+                <div>{{ answer.dt }}</div>
+                <div>{{ answer.user.handle_name }}</div>
+                <div>{{ answer.content|linebreaksbr|urlize }}</div>
+                <form action="{% url 'qa:answer_good' question.id answer.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="{% if request.user not in answer.good.all %}not_{% endif %}good">
+                        {% if request.user in answer.good.all %}
+                        <i class="fas fa-heart" style="color:crimson;"></i>
+                        {% else %}
+                        <i class="far fa-heart" style="color:#cccccc;"></i>
+                        {% endif %}
+                        いいね　{% count_good answer.good.all %}
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+            <button class="btn btn-primary my-2" value="{{ question.id }}">回答する</button>
+        </section>
+
+            <!-- 回答 -->
+            <div class="border p-2">
+                <form action="{% url 'qa:detail' question.id %}" method="POST">
+                    {% csrf_token %}
+                    <textarea name="content" class="form-control"></textarea>
+                    <input type="hidden" name="target" value="{{ question.id }}">
+                    <input type="submit" value="送信" class="btn btn-outline-primary">
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
