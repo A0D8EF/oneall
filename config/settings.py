@@ -82,6 +82,9 @@ INSTALLED_APPS = [
     "chat.apps.ChatConfig",
     "news.apps.NewsConfig",
     "news.templatetags.param_change",
+    "textbook.apps.TextbookConfig",
+    
+    'django_cleanup',
 
     # django-allauth
     'django.contrib.sites',

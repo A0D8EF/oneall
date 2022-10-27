@@ -1,0 +1,4 @@
+<option disabled selected>小カテゴリ</option>
+{% for minor_category in minor_categories %}
+<option value="{{ minor_category.id }}">{{ minor_category.name }}</option>
+{% endfor %}

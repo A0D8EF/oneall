@@ -5,6 +5,7 @@
 {% block extra_head %}
 <title>ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'news/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'oneall/css/index.css' %}">
 {% endblock %}
 
 
@@ -20,6 +21,18 @@
             <div class="news_title">{{ news.title }}</div>
         </a>
         {% endfor %}
+    </div>
+</section>
+<section>
+    <h2>教材</h2>
+    <div class="textbook_list">
+        <a class="textbook_list_content" href="https://www.youtube.com/watch?v=zacJ9SdErqc" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ytimg.com/vi/zacJ9SdErqc/maxresdefault.jpg" alt="">
+            <label aria-label="再生">
+                <i class="fa-brands fa-youtube"></i>
+            </label>
+            <div class="play-btn_center"></div>
+        </a>
     </div>
 </section>
 {% endblock %}

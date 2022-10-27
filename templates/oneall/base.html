@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'oneall/css/base.css' %}">
 
@@ -19,17 +19,18 @@
         <a class="top-page" href="{% url 'oneall:index' %}">ONE/ALL</a>
 
         <nav>
-            <a href="{% url 'oneall:index' %}">HOME</a>
+            <a href="{% url 'oneall:index' %}"><i class="fa-solid fa-house"></i> HOME</a>
             <a href="{% url 'news:index' %}">NEWS</a>
+            <a href="{% url 'textbook:index' %}"><i class="fa-solid fa-book-open"></i> TEXTBOOK</a>
             <a href="{% url 'chat:index' %}">CHAT</a>
             <a href="{% url 'qa:index' %}">Q&A</a>
             {# <a href="{% url 'member:index' %}">MEMBER</a> #}
-            <a href="{% url 'users:index' %}">MyPAGE</a>
+            <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user"></i> MyPAGE</a>
         </nav>
     </header>
     <main>
-    {% block main %}
-    {% endblock %}
+        {% block main %}
+        {% endblock %}
     </main>
 </body>
 </html>

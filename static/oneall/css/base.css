@@ -1,6 +1,8 @@
+/* 1rem : 16px */
+
 :root {
-    --main-color: #288c66;
-    --accent-color: #288c66;
+    --main-color: #FF6347;
+    --accent-color: #FF6347;
     --tag-color: #666666;
     --border-color: #666666;
 }
@@ -12,7 +14,6 @@ header {
     margin-bottom: 0.5rem;
     background-color: white;
     border-bottom: solid 0.2rem var(--main-color);
-    box-shadow: 0 0.1rem rgba(0, 0, 0, 0.15);
 
     width: 100%;
     z-index: 10;

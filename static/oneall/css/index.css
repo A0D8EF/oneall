@@ -1,0 +1,41 @@
+.textbook_list_content {
+    display: inline-block;
+    width: 30%;
+    position: relative;
+
+    cursor: pointer;
+}
+
+.textbook_list_content > img {
+    width: 100%;
+    z-index: 10;
+}
+
+.textbook_list_content > label {
+    display: block;
+    color: red;
+    font-size: 3rem;
+    background-color: rgba(255,255,255,0);
+    border: none;
+    z-index: 20;
+    margin: 0;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    cursor: pointer;
+}
+.play-btn_center {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: white;
+    z-index: 15;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
