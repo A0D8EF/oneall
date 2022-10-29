@@ -76,13 +76,14 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
 
     "oneall.apps.OneallConfig",
-    "qa.apps.QaConfig",
-    "qa.templatetags.custom_tag",
-    "qa.templatetags.count_good",
-    "chat.apps.ChatConfig",
+    # "qa.apps.QaConfig",
+    # "qa.templatetags.custom_tag",
+    # "qa.templatetags.count_good",
+    # "chat.apps.ChatConfig",
     "news.apps.NewsConfig",
     "news.templatetags.param_change",
     "textbook.apps.TextbookConfig",
+    "sales.apps.SalesConfig",
     
     'django_cleanup',
 

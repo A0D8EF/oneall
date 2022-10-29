@@ -1,0 +1,35 @@
+.modal_label { cursor: pointer; }
+
+.modal_chk { display: none; }
+
+.modal_body {
+    display: none;
+    z-index: 10;
+}
+
+.modal_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+    cursor: pointer;
+}
+
+.modal_content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    min-height: 40%;
+    overflow-y: auto;
+    background: white;
+
+    padding: 3rem;
+}
+
+input[type="checkbox"].modal_chk:checked + .modal_body {
+    display: block;
+}

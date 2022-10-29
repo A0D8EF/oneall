@@ -27,8 +27,9 @@ urlpatterns = [
     path("news/", include("news.urls")),
     path("textbook/", include("textbook.urls")),
     # path("content/", include("content.urls")),
-    path("qa/", include("qa.urls")),
-    path("chat/", include("chat.urls")),
+    path("sales/", include("sales.urls")),
+    # path("qa/", include("qa.urls")),
+    # path("chat/", include("chat.urls")),
     
     path("users/", include("users.urls"))
 ]

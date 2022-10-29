@@ -2,9 +2,16 @@
 
 :root {
     --main-color: #FF6347;
-    --accent-color: #FF6347;
+    --pentad-color1: #FF6347; /* same as --main-color */
+    --pentad-color2: #FF47E3;
+    --pentad-color3: #E3FF47;
+    --pentad-color4: #47FFBF;
+    --pentad-color5: #4788FF;
+
+    --accent-color6: #FF6347;
     --tag-color: #666666;
     --border-color: #666666;
+    --background-color: #dddddd;
 }
 
 header {

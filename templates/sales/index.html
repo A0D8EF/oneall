@@ -1,0 +1,37 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<title>営業データ －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'sales/css/modal_diagram.css' %}">
+<!-- <script src="{% static 'sales/js/index.js' %}"></script> -->
+{% endblock %}
+
+
+{% block main %}
+<h1>SALES DATA</h1>
+<div class="sales_top">
+    <!-- カレンダー -->
+    <div class="calender_area">
+        {% include "sales/calender.html" %}
+    </div>
+
+    <!-- グラフ -->
+    <div class="graph_area">
+        {% include "sales/calender_header.html" %}
+        <div>
+            {% for c in contracts %}
+            <div>{{ c.contract_date }}</div>
+            <div>{{ c.user }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% if request.user.is_student %}
+{% include "sales/sales_form.html" %}
+{% endif %}
+
+{% endblock %}

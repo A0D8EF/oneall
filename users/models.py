@@ -77,5 +77,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.handle_name
 
+    def __str__(self):
+        return self.handle_name
+
 
 

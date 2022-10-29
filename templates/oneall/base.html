@@ -22,10 +22,12 @@
             <a href="{% url 'oneall:index' %}"><i class="fa-solid fa-house"></i> HOME</a>
             <a href="{% url 'news:index' %}">NEWS</a>
             <a href="{% url 'textbook:index' %}"><i class="fa-solid fa-book-open"></i> TEXTBOOK</a>
-            <a href="{% url 'chat:index' %}">CHAT</a>
-            <a href="{% url 'qa:index' %}">Q&A</a>
+            <a href="{% url 'sales:index' %}">SALES</a>
+            {# <a href="{% url 'chat:index' %}">CHAT</a> #}
+            {# <a href="{% url 'qa:index' %}">Q&A</a> #}
             {# <a href="{% url 'member:index' %}">MEMBER</a> #}
             <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user"></i> MyPAGE</a>
+            <a href="{% url 'account_logout' %}" style="font-size:1.5rem; color:var(--main-color);"><i class="fas fa-sign-out-alt"></i></a>
         </nav>
     </header>
     <main>

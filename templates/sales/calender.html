@@ -1,0 +1,63 @@
+{% include "sales/calender_header.html" %}
+<table class="calender">
+    <thead class="calender_head">
+        <tr>
+            <td>日</td>
+            <td>月</td>
+            <td>火</td>
+            <td>水</td>
+            <td>木</td>
+            <td>金</td>
+            <td>土</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for week in calender %}
+        <tr>
+            {% for date in week %}
+            <td class="create_sales_data" data-day="{{ date.day }}">
+                <div class="calender_day">{{ date.day }}</div>
+                {% if request.user.is_student %}
+                    {% for ac in acs %}
+                    {% if ac.ac_date.year == selected_date.year and ac.ac_date.month == selected_date.month and date.day == ac.ac_date.day %}
+                        <label class="sales_data_lebel ac_label">AC</label>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for q in questions %}
+                    {% if q.q_date.year == selected_date.year and q.q_date.month == selected_date.month and date.day == q.q_date.day %}
+                        <label class="sales_data_lebel q_label">質問</label>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for abc in abcs %}
+                    {% if abc.abc_date.year == selected_date.year and abc.abc_date.month == selected_date.month and date.day == abc.abc_date.day %}
+                        <label class="sales_data_lebel abc_label">ABC</label>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    {% for interview in interviews %}
+                    {% if interview.interview_date.year == selected_date.year and interview.interview_date.month == selected_date.month and date.day == interview.interview_date.day %}
+                        <label class="sales_data_lebel interview_label">面談</label>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for contract in contracts %}
+                    {% if contract.contract_date.year == selected_date.year and contract.contract_date.month == selected_date.month and date.day == contract.contract_date.day %}
+                        <label class="sales_data_lebel contract_label">契約</label>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if request.user.is_student %}
+<div class="add_sales_data">
+    <label class="modal_label" for="modal_chk" style="font-size:3rem; color: var(--main-color);">
+        <i class="fas fa-plus-circle"></i>
+    </label>
+</div>
+{% endif %}

@@ -1,0 +1,96 @@
+
+{# モーダル領域 #}
+<input id="modal_chk" class="modal_chk" type="checkbox">
+<div class="modal_body">
+    <label class="modal_bg" for="modal_chk"></label>
+    <div class="modal_content">
+        
+        <input id="modal_sw" class="modal_chk" type="checkbox">
+
+        <h2>営業データ入力フォーム</h2>
+
+        <div class="modal_balance">
+            <input type="radio" name="sales_form_radio" class="sales_form_radio" id="sales_form_radio_ac">
+            <label for="sales_form_radio_ac" class="sales_form_label" id="sales_form_label_ac">AC</label>
+    
+            <input type="radio" name="sales_form_radio" class="sales_form_radio" id="sales_form_radio_question">
+            <label for="sales_form_radio_question" class="sales_form_label" id="sales_form_label_question">質問</label>
+    
+            <input type="radio" name="sales_form_radio" class="sales_form_radio" id="sales_form_radio_abc">
+            <label for="sales_form_radio_abc" class="sales_form_label" id="sales_form_label_abc">ABC</label>
+            
+            <input type="radio" name="sales_form_radio" class="sales_form_radio" id="sales_form_radio_interview">
+            <label for="sales_form_radio_interview" class="sales_form_label" id="sales_form_label_interview">面談</label>
+    
+            <input type="radio" name="sales_form_radio" class="sales_form_radio" id="sales_form_radio_contract">
+            <label for="sales_form_radio_contract" class="sales_form_label" id="sales_form_label_contract">契約</label>
+            
+            <!-- AC -->
+            <form action="" method="POST" class="sales_form_area" id="sales_form_area_ac">
+                {% csrf_token %}
+                <input type="checkbox" name="sales_form_chk" value="ac" checked style="display:none;">
+                <input type="date" name="ac_date" class="form-control" required>
+                <input type="text" name="c_name" class="form-control" placeholder="Cさんの名前" required>
+                <input type="text" name="place" class="form-control" placeholder="場所">
+                <input type="submit" value="登録">
+            </form>
+    
+            <!-- 質問 -->
+            <form action="" method="POST" class="sales_form_area" id="sales_form_area_question">
+                {% csrf_token %}
+                <input type="checkbox" name="sales_form_chk" value="question" checked style="display:none;">
+                <input type="date" name="q_date" class="form-control" required>
+                <select name="ac" required>
+                    <option value="" disabled selected>Cさん</option>
+                    {% for ac in acs %}
+                    <option value="{{ ac.id }}">{{ ac.c_name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="登録">
+            </form>
+    
+            <!-- ABC -->
+            <form action="" method="POST" class="sales_form_area" id="sales_form_area_abc">
+                {% csrf_token %}
+                <input type="checkbox" name="sales_form_chk" value="abc" checked style="display:none;">
+                <input type="date" name="abc_date" class="form-control" required>
+                <select name="question" required>
+                    <option value="" disabled selected>Cさん</option>
+                    {% for question in questions %}
+                    <option value="{{ question.id }}">{{ question.ac.c_name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="登録">
+            </form>
+    
+            <!-- 面談 -->
+            <form action="" method="POST" class="sales_form_area" id="sales_form_area_interview">
+                {% csrf_token %}
+                <input type="checkbox" name="sales_form_chk" value="interview" checked style="display:none;">
+                <input type="date" name="interview_date" class="form-control" required>
+                <select name="abc" required>
+                    <option value="" disabled selected>Cさん</option>
+                    {% for abc in abcs %}
+                    <option value="{{ abc.id }}">{{ abc.question.ac.c_name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="登録">
+            </form>
+    
+            <!-- 契約 -->
+            <form action="" method="POST" class="sales_form_area" id="sales_form_area_contract">
+                {% csrf_token %}
+                <input type="checkbox" name="sales_form_chk" value="contract" checked style="display:none;">
+                <input type="date" name="contract_date" class="form-control" required>
+                <select name="interview" required>
+                    <option value="" disabled selected>Cさん</option>
+                    {% for interview in interviews %}
+                    <option value="{{ interview.id }}">{{ interview.abc.question.ac.c_name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="登録">
+            </form>
+        </div>
+    </div>
+</div>
+
