@@ -1,55 +1,53 @@
 window.addEventListener("load", function (){
 
-    const tab_radios = $(".tab_radio");
-    $(".tab_radio").on("change", (event) => {
-        for(let t of tab_radios) {
-            if( t.checked ){
-                document.cookie = "tab=" + decodeURIComponent(t.id);
-                document.cookie = "Path=/single";
-                document.cookie = "SameSite=strict";
-                // console.log(document.cookie);
-            }
-        }
-    });
+    $(".modal_label").on("click", function(){ create_sales_data_today(); });
 
-    set_tab();
-
-    $(".income_chk").on("change", function(){ change_expense_item( $(this).prop("checked"), $(this).val() ); });
-    change_expense_item($("#income_chk").prop("checked"), $("#income_chk").val() );
-
-    $("#add_income").on("click", function() { add_income(); });
-    $("#modal_sw").on("click", function() { list_income(); });
-    $(".modal_bg").on("click", function() {
-        $("#modal_sw").prop("checked", false);
-    })
-
-    // balanceの新規登録
-    $(".modal_label[for='modal_chk']").on("click", function() {
-        $("#balance_form").prop("action", "");
-    });
-
-    // balanceの編集
-    $(".edit_modal_chk").prop("checked", false);
-    $(".submit_edit").on("click", function() { edit( $(this).val() ); });
-
-    // balanceの削除
-    $(".trash").on("click", function() { trash( $(this).val() ); });
-
-    $(".create_day_balance").on("click", function() {
-        if ( !(event.target.closest(".day_balance")) ){
-            create_day_balance( $(this).data("day") );
+    $(".create_sales_data").on("click", function() {
+        if ( !(event.target.closest(".sales_data_label")) ){
+            create_sales_data( $(this).data("day") );
         }
      });
 
-    draw_bar_graph();
-    draw_income_pie_graph();
-    draw_spending_pie_graph();
 
-    $(".day_balance").on("click", function() {
-        $("#tab_radio_1").prop("checked", false);
-        $("#tab_radio_2").prop("checked", true);
-    })
 });
+
+function create_sales_data_today(){
+    let today   = new Date();
+    let year    = String(today.getFullYear());
+    let month   = ("0" + String(today.getMonth() + 1)).slice(-2);
+    let day     = ("0" + String(today.getDate())).slice(-2);
+
+    let date    = year + "-" + month + "-" + day;
+    let config_date = {
+        locale: "ja",
+        dateFormat: "Y-m-d",
+        defaultDate: date
+    }
+
+    flatpickr(".input_date", config_date);
+    $("#sales_form_radio_ac").prop("checked", true);
+}
+
+
+function create_sales_data(calender_day){
+    let year    = $("[name='year'] option:selected").val();
+    let month   = $("[name='month'] option:selected").val();
+
+    month       = ("0" + String(month)).slice(-2);
+    let day     = ("0" + String(calender_day)).slice(-2);
+    
+    let date    = year + "-" + month + "-" + day;
+
+    let config_date = {
+        locale: "ja",
+        dateFormat: "Y-m-d",
+        defaultDate: date
+    }
+
+    flatpickr(".input_date", config_date);
+    $("#modal_chk").prop("checked", true);
+    $("#sales_form_radio_ac").prop("checked", true);
+}
 
 
 function draw_bar_graph(){

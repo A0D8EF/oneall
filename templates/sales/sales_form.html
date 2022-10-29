@@ -29,7 +29,7 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_ac">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="ac" checked style="display:none;">
-                <input type="date" name="ac_date" class="form-control" required>
+                <input name="ac_date" class="input_date form-control" required>
                 <input type="text" name="c_name" class="form-control" placeholder="Cさんの名前" required>
                 <input type="text" name="place" class="form-control" placeholder="場所">
                 <input type="submit" value="登録">
@@ -39,7 +39,7 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_question">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="question" checked style="display:none;">
-                <input type="date" name="q_date" class="form-control" required>
+                <input name="q_date" class="input_date form-control" required>
                 <select name="ac" required>
                     <option value="" disabled selected>Cさん</option>
                     {% for ac in acs %}
@@ -53,7 +53,7 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_abc">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="abc" checked style="display:none;">
-                <input type="date" name="abc_date" class="form-control" required>
+                <input name="abc_date" class="input_date form-control" required>
                 <select name="question" required>
                     <option value="" disabled selected>Cさん</option>
                     {% for question in questions %}
@@ -67,7 +67,7 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_interview">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="interview" checked style="display:none;">
-                <input type="date" name="interview_date" class="form-control" required>
+                <input name="interview_date" class="input_date form-control" required>
                 <select name="abc" required>
                     <option value="" disabled selected>Cさん</option>
                     {% for abc in abcs %}
@@ -81,7 +81,7 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_contract">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="contract" checked style="display:none;">
-                <input type="date" name="contract_date" class="form-control" required>
+                <input name="contract_date" class="input_date form-control" required>
                 <select name="interview" required>
                     <option value="" disabled selected>Cさん</option>
                     {% for interview in interviews %}
