@@ -14,20 +14,24 @@ import datetime
 from django.http import HttpResponseNotFound
 from django.template.loader import render_to_string
 
+from  pytz import timezone
+
 
 class IndexView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
         context = {}
 
         form    = YearMonthForm(request.GET)
-        today   = datetime.datetime.now()
+
+        jst     = timezone('Asia/Tokyo')
+        today   = datetime.datetime.now(tz=jst)
 
         if form.is_valid():
             cleaned = form.clean()
 
-            selected_date   = datetime.datetime(year=cleaned["year"], month=cleaned["month"], day=1).astimezone()
+            selected_date   = datetime.datetime(year=cleaned["year"], month=cleaned["month"], day=1, tzinfo=jst)
         else:
-            selected_date   = datetime.datetime(year=today.year, month=today.month, day=1).astimezone()
+            selected_date   = datetime.datetime(year=today.year, month=today.month, day=1, tzinfo=jst)
 
         context["selected_date"] = selected_date
 

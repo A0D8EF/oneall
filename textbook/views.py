@@ -8,6 +8,8 @@ from django.core.paginator import Paginator
 from .models import MajorCategory, MinorCategory, Textbook
 from .forms import TextbookForm, MajorCategoryForm
 
+from django.contrib import messages
+
 from django.http.response import JsonResponse
 from django.template.loader import render_to_string
 
@@ -69,3 +71,41 @@ class AddTextbookView(LoginRequiredMixin, View):
 
 
 add = AddTextbookView.as_view()
+
+
+class AddMajorCategoryView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+
+        major_categories    = MajorCategory.objects.all()
+        copied              = request.POST.copy()
+
+        data    = { "error": True }
+
+        for c in major_categories:
+            if copied["name"] == c.name:
+                messages.info(request, '既に存在するカテゴリです')
+                return redirect("textbook:index")
+        
+        form    = MajorCategoryForm(copied)
+        if not form.is_valid():
+            print(form.errors)
+            return JsonResponse(data)
+        
+        print("バリデーションOK")
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
+
+
+add_major_category = AddMajorCategoryView.as_view()
+
+
+class AddMinorCategoryView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        data    = { "error": True }
+
+        return JsonResponse(data)
+
+
+add_minor_category = AddMinorCategoryView.as_view()

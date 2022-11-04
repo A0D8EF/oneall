@@ -1,0 +1,11 @@
+#news_form {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#news_category_list > label {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border: solid 0.1rem var(--tag-color);
+    border-radius: 0.2rem;
+}

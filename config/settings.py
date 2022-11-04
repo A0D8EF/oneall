@@ -85,6 +85,7 @@ INSTALLED_APPS = [
     "textbook.apps.TextbookConfig",
     "sales.apps.SalesConfig",
     
+    "rest_framework",
     'django_cleanup',
 
     # django-allauth

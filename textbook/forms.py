@@ -24,4 +24,4 @@ class MajorCategoryForm(forms.ModelForm):
 
     class Meta:
         model   = MajorCategory
-        fields  = ["id"]
+        fields  = ["name"]

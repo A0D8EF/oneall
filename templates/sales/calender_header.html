@@ -14,7 +14,7 @@
             <option value="{{ month }}" {% if month == selected_date.month %}selected{% endif %}>{{ month }}月</option>
             {% endfor %}
         </select>
-        <input type="submit" value="検索">
+        <input type="submit" value="検索" class="original_btn">
     </form>
     <div class="calender_link_area">
         <a href="?year={{ next_month.year }}&month={{ next_month.month }}" style="color: var(--main-color);"><i class="fas fa-angle-right"></i></a>

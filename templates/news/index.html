@@ -6,7 +6,12 @@
 {% block extra_head %}
 <title>NEWS －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'news/css/index.css' %}">
-<script src="{% static 'news/js/script.js' %}"></script>
+<link rel="stylesheet" href="{% static 'news/css/news_form.css' %}">
+<link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
+
+<script src="{% static 'oneall/js/ajax.js' %}"></script>
+<script src="{% static 'news/js/index.js' %}"></script>
+<script src="{% static 'news/js/news_form.js' %}"></script>
 {% endblock %}
 
 
@@ -16,10 +21,9 @@
         <h1>NEWS</h1>
     </div>
     <div>
-        {# <h2>検索</h2> #}
         <div class="news_search">
             <form action="" id="news_search_form" class="input-group">
-                <select name="category">
+                <select name="category" class="not_basecss">
                     <option value="">カテゴリ</option>
                     {% for category in categories %}
                     <option value="{{ category.id }}" {% if request.GET.category == category.str_id %}selected{% endif %}>{{ category.name }}</option>
@@ -62,4 +66,8 @@
         {% endif %}
     </ul>
 </section>
+
+{% if request.user.is_teacher %}
+{% include 'news/news_form.html' %}
+{% endif %}
 {% endblock %}

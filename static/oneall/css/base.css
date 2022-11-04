@@ -58,7 +58,7 @@ main {
 }
 
 section {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     margin-bottom: 2.5rem;
 }
 
@@ -69,4 +69,38 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+select:not(.not_basecss) {
+    height:2rem;
+    border-radius: 0.2rem;
+}
+
+.original_btn {
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 0.2rem;
+    color: white;
+    padding: 0 0.5rem;
+    cursor: pointer;
+}
+.original_btn_send {
+    display: block;
+    margin-top: 0.2rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+.original_btn_cancel {
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 0.2rem;
+    color: black;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+}
+
+.error_message {
+    color: red;
+    font-weight: bold;
+    padding: 0.5rem 0;
 }

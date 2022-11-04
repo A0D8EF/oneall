@@ -5,7 +5,11 @@
 {% block extra_head %}
 <title>教材 －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'textbook/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'textbook/css/textbook_form.css' %}">
+<link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
+
 <script src="{% static 'textbook/js/index.js' %}"></script>
+<script src="{% static 'textbook/js/textbook_form.js' %}"></script>
 {% endblock %}
 
 
@@ -41,48 +45,7 @@
 </section>
 
 {% if request.user.is_teacher %}
-<section>
-    <h2>教材投稿</h2>
-    <form action="" method="POST" enctype="multipart/form-data" class="post_textbook">
-        {% csrf_token %}
-        <div>
-            <label class="post_textbook_label">大カテゴリ</label>
-            <select name="major_category" id="major_category" required>
-                <option disabled selected>大カテゴリ</option>
-                {% for major_category in major_categories %}
-                <option value="{{ major_category.id }}">{{ major_category.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div>
-            <label class="post_textbook_label">小カテゴリ</label>
-            <select name="minor_category" id="minor_category" required>
-            </select>
-        </div>
-        <div>
-            <label class="post_textbook_label">タイトル</label>
-            <input type="text" name="title" style="width: calc(100% - 9rem);" required>
-        </div>
-        <div>
-            <label class="post_textbook_label">サムネイル画像</label>
-            <input type="file" name="thumbnail">
-        </div>
-        <div>
-            <label class="post_textbook_label">Youtube動画</label>
-            <input type="checkbox" name="is_youtube" id="is_youtube_chk" class="is_youtube_chk">
-            <label for="is_youtube_chk" class="is_youtube_label"></label>
-        </div>
-        <div class="youtube_url mb-4">
-            <label class="post_textbook_label">Youtube URL</label>
-            <input type="text" name="youtube_url" style="width: calc(100% - 9rem);">
-        </div>
-        <div>
-            <label class="post_textbook_label">ファイル</label>
-            <input type="file" name="file_content">
-        </div>
-        <input type="submit" value="送信" class="btn btn-outline-primary">
-    </form>
-</section>
+{% include 'textbook/textbook_form.html' %}
 {% endif %}
 
 {% endblock %}

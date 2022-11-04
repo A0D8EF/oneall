@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils import timezone
 
 class Category(models.Model):
-    name    = models.CharField(verbose_name="カテゴリ名", max_length=10)
+    name    = models.CharField(verbose_name="カテゴリ名", max_length=10, unique=True)
 
     def __str__(self):
         return self.name

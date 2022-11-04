@@ -1,0 +1,55 @@
+/* 教材投稿 */
+.textbook_form {
+    width: 90%;
+    margin: 0 auto;
+}
+.textbook_form > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 3rem;
+    margin: 0.5rem 0;
+}
+.textbook_form_label {
+    display: inline-block;
+    width: 9rem;
+}
+.textbook_form > div > select {
+    width: 16rem;
+}
+.is_youtube_chk {
+    display: none;
+}
+.is_youtube_label {
+    display: inline-block;
+    position: relative;
+    width: 6rem;
+    height: 2rem;
+    background: #666;
+    transition: 0.2s;
+    cursor: pointer;
+    border-radius: 0.4rem;
+}
+.is_youtube_label::before {
+    content: "No";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: #143cdc;
+    transition: 0.2s;
+    border-radius: 0.4rem;
+
+    /* contentの中央寄せ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type="checkbox"].is_youtube_chk:checked + .is_youtube_label::before {
+    content: "Yes";
+    left: 0;
+    background: crimson;
+}

@@ -1,5 +1,32 @@
-.news_detail_content {
+.news_detail {
     width: 90%;
     margin: 1rem auto;
     padding: 1rem;
+
+    position: relative;
+}
+#news_edit_chk {
+    display: none;
+}
+.news_detail_edit {
+    display: none;
+}
+#news_edit_chk:checked ~ .news_detail_edit { display: block; }
+#news_edit_chk:checked ~ .news_detail_content { display: none; }
+#news_edit_chk:checked ~ .news_icons { display: none; }
+
+.news_icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem 1rem;
+}
+.news_icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+    border: none;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    cursor: pointer;
 }
