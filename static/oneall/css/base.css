@@ -2,16 +2,17 @@
 
 :root {
     --main-color: #FF6347;
-    --pentad-color1: #FF6347; /* same as --main-color */
-    --pentad-color2: #FF47E3;
-    --pentad-color3: #E3FF47;
-    --pentad-color4: #47FFBF;
-    --pentad-color5: #4788FF;
+    --pentad-color1: #FF6347; /* same as --main-color, R255 G99 B71*/
+    --pentad-color2: #FF47E3; /* R255 G71 B227 */
+    --pentad-color3: #E3FF47; /* R227 G255 B71 */
+    --pentad-color4: #47FFBF; /* R71 G255 B191 */
+    --pentad-color5: #4788FF; /* R71 G136 B255 */
 
     --accent-color6: #FF6347;
-    --tag-color: #666666;
-    --border-color: #666666;
-    --background-color: #dddddd;
+    --tag-color: #777;
+    --border-color: #777;
+    --inactive-color: #ddd;
+    --cancel-btn-color: #ddd;
 }
 
 header {
@@ -91,7 +92,7 @@ select:not(.not_basecss) {
     padding-bottom: 0.2rem;
 }
 .original_btn_cancel {
-    background-color: var(--background-color);
+    background-color: var(--cancel-btn-color);
     border: none;
     border-radius: 0.2rem;
     color: black;

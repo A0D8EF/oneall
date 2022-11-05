@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="{% static 'sales/css/calender.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/sales_form.css' %}">
 <link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
+<link rel="stylesheet" href="{% static 'sales/css/graph.css' %}">
+
 <script src="{% static 'sales/js/index.js' %}"></script>
+<script src="{% static 'sales/js/graph.js' %}"></script>
 {% endblock %}
 
 
@@ -22,13 +25,7 @@
 
     <!-- グラフ -->
     <div class="graph_area">
-        {% include "sales/calender_header.html" %}
-        <div>
-            {% for c in contracts %}
-            <div>{{ c.contract_date }}</div>
-            <div>{{ c.user }}</div>
-            {% endfor %}
-        </div>
+        {% include "sales/graph.html" %}
     </div>
 </div>
 

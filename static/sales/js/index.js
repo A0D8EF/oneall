@@ -8,28 +8,60 @@ window.addEventListener("load", function (){
         }
      });
 
+     draw_bar_graph();
+     draw_stacked_bar_graph();
 
 });
 
 function create_sales_data_today(){
+
+    $("#sales_form_radio_ac").prop("checked", true);
+    change_flatpickr_today();
+    $(".sales_form_radio").on("change", function() { change_flatpickr_today() });
+
+}
+
+function create_sales_data(calender_day){
+
+    $("#sales_form_radio_ac").prop("checked", true);
+    change_flatpickr(calender_day);
+    $(".sales_form_radio").on("change", function() { change_flatpickr(calender_day) });
+
+    $("#modal_chk").prop("checked", true);
+}
+
+function change_flatpickr_today() {
+    
     let today   = new Date();
     let year    = String(today.getFullYear());
     let month   = ("0" + String(today.getMonth() + 1)).slice(-2);
     let day     = ("0" + String(today.getDate())).slice(-2);
-
+    
     let date    = year + "-" + month + "-" + day;
+
     let config_date = {
         locale: "ja",
         dateFormat: "Y-m-d",
         defaultDate: date
     }
 
+    if ($("#sales_form_radio_ac").prop("checked") || $("#sales_form_radio_abc").prop("checked") || $("#sales_form_radio_interview").prop("checked") ) {
+        let hour    = ("0" + String(today.getHours()) ).slice(-2);
+        let minute  = "00";
+
+        date        += " " + hour + ":" + minute;
+        config_date = {
+            locale: "ja",
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            defaultDate: date
+    }
+    }
+
     flatpickr(".input_date", config_date);
-    $("#sales_form_radio_ac").prop("checked", true);
 }
 
-
-function create_sales_data(calender_day){
+function change_flatpickr(calender_day) {
     let year    = $("[name='year'] option:selected").val();
     let month   = $("[name='month'] option:selected").val();
 
@@ -44,60 +76,19 @@ function create_sales_data(calender_day){
         defaultDate: date
     }
 
+    if ($("#sales_form_radio_ac").prop("checked") || $("#sales_form_radio_abc").prop("checked") || $("#sales_form_radio_interview").prop("checked") ) {
+        let today   = new Date();
+        let hour    = ("0" + String(today.getHours()) ).slice(-2);
+        let minute  = "00";
+
+        date        += " " + hour + ":" + minute;
+        config_date = {
+            locale: "ja",
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            defaultDate: date
+    }
+    }
+
     flatpickr(".input_date", config_date);
-    $("#modal_chk").prop("checked", true);
-    $("#sales_form_radio_ac").prop("checked", true);
-}
-
-
-function draw_bar_graph(){
-
-    let label_elems = $(".monthly_balance_label");
-    let data_elems  = $(".monthly_balance_data");
-
-    let labels      = [];
-    let datas       = [];
-
-    for (let label_elem of label_elems){
-        labels.push(label_elem.innerText.replace("年", "/").replace("月", ""));
-    }
-    for (let data_elem of data_elems){
-        let raw_data    = data_elem.innerText;
-        datas.push(Number(raw_data.replace(/,/g, "").replace("\xA5", "")));
-    }
-
-    let colors      = [];
-    for (let data of datas){
-        if (data >= 0){
-            colors.push('rgba(20,60,220,0.8)');
-        }else{
-            colors.push('rgba(220,20,60,0.8)');
-        }
-    }
-
-    const ctx       = document.getElementById("monthly_balance_graph").getContext("2d");
-    const myChart   = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "収支",
-                data: datas,
-                backgroundColor: colors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false,
-                }
-            }
-        }
-    });
 }

@@ -38,5 +38,10 @@
             <label for="modal_chk" class="original_btn_cancel">キャンセル</label>
         </form>
         <h2 style="margin-top: 1rem;">カテゴリ一覧</h2>
+        <div id="news_category_list">
+            {% for category in categories %}
+            <label>{{ category.name }}</label>
+            {% endfor %}
+        </div>
     </div>
 </div>

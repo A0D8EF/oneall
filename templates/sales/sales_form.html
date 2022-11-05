@@ -28,8 +28,8 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_ac">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="ac" checked style="display:none;">
+                <input type="text" name="c_name" class="form-control" placeholder="Cさんの名前を入力してください" required>
                 <input name="ac_date" class="input_date form-control" required>
-                <input type="text" name="c_name" class="form-control" placeholder="Cさんの名前" required>
                 <input type="text" name="place" class="form-control" placeholder="場所">
                 <input type="submit" value="登録" class="original_btn original_btn_send">
             </form>
@@ -38,13 +38,13 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_question">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="question" checked style="display:none;">
-                <input name="q_date" class="input_date form-control" required>
-                <select name="ac" required>
-                    <option value="" disabled selected>Cさん</option>
+                <select name="ac" class="form-control" style="height:2.3rem;" required>
+                    <option value="" disabled selected>Cさんを選択してください</option>
                     {% for ac in acs %}
                     <option value="{{ ac.id }}">{{ ac.c_name }}</option>
                     {% endfor %}
                 </select>
+                <input name="q_date" class="input_date form-control" required>
                 <input type="submit" value="登録" class="original_btn original_btn_send">
             </form>
     
@@ -52,13 +52,13 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_abc">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="abc" checked style="display:none;">
-                <input name="abc_date" class="input_date form-control" required>
-                <select name="question" required>
-                    <option value="" disabled selected>Cさん</option>
+                <select name="question" class="form-control" style="height:2.3rem;" required>
+                    <option value="" disabled selected>Cさんを選択してください</option>
                     {% for question in questions %}
                     <option value="{{ question.id }}">{{ question.ac.c_name }}</option>
                     {% endfor %}
                 </select>
+                <input name="abc_date" class="input_date form-control" required>
                 <input type="submit" value="登録" class="original_btn original_btn_send">
             </form>
     
@@ -66,13 +66,13 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_interview">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="interview" checked style="display:none;">
-                <input name="interview_date" class="input_date form-control" required>
-                <select name="abc" required>
-                    <option value="" disabled selected>Cさん</option>
+                <select name="abc" class="form-control" style="height:2.3rem;" required>
+                    <option value="" disabled selected>Cさんを選択してください</option>
                     {% for abc in abcs %}
                     <option value="{{ abc.id }}">{{ abc.question.ac.c_name }}</option>
                     {% endfor %}
                 </select>
+                <input name="interview_date" class="input_date form-control" required>
                 <input type="submit" value="登録" class="original_btn original_btn_send">
             </form>
     
@@ -80,13 +80,13 @@
             <form action="" method="POST" class="sales_form_area" id="sales_form_area_contract">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="contract" checked style="display:none;">
-                <input name="contract_date" class="input_date form-control" required>
-                <select name="interview" required>
-                    <option value="" disabled selected>Cさん</option>
+                <select name="interview" class="form-control" style="height:2.3rem;" required>
+                    <option value="" disabled selected>Cさんを選択してください</option>
                     {% for interview in interviews %}
                     <option value="{{ interview.id }}">{{ interview.abc.question.ac.c_name }}</option>
                     {% endfor %}
                 </select>
+                <input name="contract_date" class="input_date form-control" required>
                 <input type="submit" value="登録" class="original_btn original_btn_send">
             </form>
         </div>

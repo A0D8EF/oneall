@@ -1,0 +1,54 @@
+<!-- タブシステム -->
+<input type="radio" name="tab_system" id="tab_radio_1" class="tab_radio" checked><label for="tab_radio_1" class="tab_label">月間データ</label>
+<input type="radio" name="tab_system" id="tab_radio_2" class="tab_radio"><label for="tab_radio_2" class="tab_label">年間データ</label>
+
+<!-- 月間 -->
+<div id="tab_area_1" class="tab_area">
+    {% include "sales/calender_header.html" %}
+    <canvas id="monthly_sales_data_graph"></canvas>
+    <div class="monthly_sales_data_list" style="display:none;">
+        <table>
+            <tr>
+                <td><span class="monthly_sales_data_label">AC</span></td>
+                <td><span class="monthly_sales_data_value">{{ monthly_sales_datas.0.acs }}</span></td>
+            </tr>
+            <tr>
+                <td><span class="monthly_sales_data_label">質問</span></td>
+                <td><span class="monthly_sales_data_value">{{ monthly_sales_datas.0.questions }}</span></td>
+            </tr>
+            <tr>
+                <td><span class="monthly_sales_data_label">ABC</span></td>
+                <td><span class="monthly_sales_data_value">{{ monthly_sales_datas.0.abcs }}</span></td>
+            </tr>
+            <tr>
+                <td><span class="monthly_sales_data_label">面談</span></td>
+                <td><span class="monthly_sales_data_value">{{ monthly_sales_datas.0.interviews }}</span></td>
+            </tr>
+            <tr>
+                <td><span class="monthly_sales_data_label">契約</span></td>
+                <td><span class="monthly_sales_data_value">{{ monthly_sales_datas.0.contracts }}</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- 年間 -->
+<div id="tab_area_2" class="tab_area">
+    {% include "sales/calender_header.html" %}
+    <div id="yearly_sales_data_graph_title">{{ yearly_sales_datas.0.year }}年{{ yearly_sales_datas.0.month }}月~{{ selected_date.year }}年{{ selected_date.month }}月の営業データ</div>
+    <canvas id="yearly_sales_data_graph"></canvas>
+    <div class="yearly_sales_data_list" style="display:none;">
+        <table>
+            {% for yearly_sales_data in yearly_sales_datas %}
+            <tr>
+                <td><span class="yearly_sales_data_label">{{ yearly_sales_data.year }}/{{ yearly_sales_data.month }}</span></td>
+                <td><span class="yearly_sales_data_value">{{ yearly_sales_data.acs }}</span></td>
+                <td><span class="yearly_sales_data_value">{{ yearly_sales_data.questions }}</span></td>
+                <td><span class="yearly_sales_data_value">{{ yearly_sales_data.abcs }}</span></td>
+                <td><span class="yearly_sales_data_value">{{ yearly_sales_data.interviews }}</span></td>
+                <td><span class="yearly_sales_data_value">{{ yearly_sales_data.contracts }}</span></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

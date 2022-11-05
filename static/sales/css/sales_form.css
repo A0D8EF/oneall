@@ -11,7 +11,7 @@
 
 .sales_form_label {
     padding: 0.2rem 0.5rem;
-    background-color: var(--background-color);
+    background-color: var(--inactive-color);
     border-radius: 0.2rem;
 }
 #sales_form_radio_ac:checked ~ #sales_form_label_ac { background-color: var(--pentad-color1); }
