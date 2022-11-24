@@ -68,6 +68,7 @@ tr .create_sales_data:nth-child(7) .calender_day { color: royalblue; }
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 0.2rem;
+    color: black;
 
     padding: 0.2rem;
     margin: 0;
@@ -77,3 +78,19 @@ tr .create_sales_data:nth-child(7) .calender_day { color: royalblue; }
 .abc_label { background-color: var(--pentad-color3); }
 .interview_label { background-color: var(--pentad-color4); }
 .contract_label { background-color: var(--pentad-color5); }
+
+.sales_data_label_parent { position: relative; }
+.sales_data_c_name {
+    display: none;
+    font-size: 0.7rem;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    margin: 0;
+
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.6rem;
+}
+.sales_data_lebel:hover + .sales_data_c_name { display: block; }

@@ -1,0 +1,31 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<title>営業データ －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'sales/css/detail.css' %}">
+
+<script src="{% static 'sales/js/index.js' %}"></script>
+{% endblock %}
+
+
+{% block main %}
+<h1>SALES DATA</h1>
+<div class="sales_data_detail border">
+    <input type="checkbox" id="interview_edit_chk" class="sales_data_edit_chk">
+    <div class="sales_data_icons">
+        <label class="sales_data_icon edit" value="{{ interview.id }}" for="interview_edit_chk"><i class="fa-solid fa-pen"></i></label>
+        <button class="sales_data_icon trash" value="{{ interview.id }}"><i class="fa-solid fa-trash-can"></i></button>
+    </div>
+    
+    <div class="sales_data_detail_content">
+        <h3>面談</h3>
+        <div>Cさんの名前：{{ interview.abc.question.ac.c_name }}</div>
+        <div>質問日：{{ interview.interview_date|date:'Y/m/d H:m' }}</div>
+    </div>
+</div>
+{% endblock %}
+
+

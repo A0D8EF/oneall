@@ -1,0 +1,32 @@
+.sales_data_detail {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+
+    position: relative;
+}
+.sales_data_edit_chk {
+    display: none;
+}
+.sales_data_detail_edit {
+    display: none;
+}
+#ac_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+#ac_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+#ac_edit_chk:checked ~ .sales_data_icons { display: none; }
+
+.sales_data_icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem 1rem;
+}
+.sales_data_icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+    border: none;
+    background-color: white;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}

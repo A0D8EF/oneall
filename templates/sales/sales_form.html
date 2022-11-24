@@ -4,8 +4,6 @@
     <label class="modal_bg" for="modal_chk"></label>
     <div class="modal_content">
         
-        <input id="modal_sw" class="modal_chk" type="checkbox">
-
         <h2>営業データ入力フォーム</h2>
 
         <div class="modal_balance">
@@ -25,7 +23,7 @@
             <label for="sales_form_radio_contract" class="sales_form_label" id="sales_form_label_contract">契約</label>
             
             <!-- AC -->
-            <form action="" method="POST" class="sales_form_area" id="sales_form_area_ac">
+            <form action="" method="POST" class="sales_form" id="sales_form_ac">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="ac" checked style="display:none;">
                 <input type="text" name="c_name" class="form-control" placeholder="Cさんの名前を入力してください" required>
@@ -35,7 +33,7 @@
             </form>
     
             <!-- 質問 -->
-            <form action="" method="POST" class="sales_form_area" id="sales_form_area_question">
+            <form action="" method="POST" class="sales_form" id="sales_form_question">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="question" checked style="display:none;">
                 <select name="ac" class="form-control" style="height:2.3rem;" required>
@@ -49,7 +47,7 @@
             </form>
     
             <!-- ABC -->
-            <form action="" method="POST" class="sales_form_area" id="sales_form_area_abc">
+            <form action="" method="POST" class="sales_form" id="sales_form_abc">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="abc" checked style="display:none;">
                 <select name="question" class="form-control" style="height:2.3rem;" required>
@@ -63,7 +61,7 @@
             </form>
     
             <!-- 面談 -->
-            <form action="" method="POST" class="sales_form_area" id="sales_form_area_interview">
+            <form action="" method="POST" class="sales_form" id="sales_form_interview">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="interview" checked style="display:none;">
                 <select name="abc" class="form-control" style="height:2.3rem;" required>
@@ -77,7 +75,7 @@
             </form>
     
             <!-- 契約 -->
-            <form action="" method="POST" class="sales_form_area" id="sales_form_area_contract">
+            <form action="" method="POST" class="sales_form" id="sales_form_contract">
                 {% csrf_token %}
                 <input type="checkbox" name="sales_form_chk" value="contract" checked style="display:none;">
                 <select name="interview" class="form-control" style="height:2.3rem;" required>
@@ -92,4 +90,3 @@
         </div>
     </div>
 </div>
-

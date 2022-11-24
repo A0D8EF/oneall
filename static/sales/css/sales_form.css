@@ -1,18 +1,19 @@
 /*--------------------------------------------------------
 入力フォーム
 ------------------------------------------------------- */
-.sales_form_area { display: none; }
+.sales_form { display: none; }
 .sales_form_radio { display: none; }
-#sales_form_radio_ac:checked ~ #sales_form_area_ac { display: block; }
-#sales_form_radio_question:checked ~ #sales_form_area_question { display: block; }
-#sales_form_radio_abc:checked ~ #sales_form_area_abc { display: block; }
-#sales_form_radio_interview:checked ~ #sales_form_area_interview { display: block; }
-#sales_form_radio_contract:checked ~ #sales_form_area_contract { display: block; }
+#sales_form_radio_ac:checked ~ #sales_form_ac { display: block; }
+#sales_form_radio_question:checked ~ #sales_form_question { display: block; }
+#sales_form_radio_abc:checked ~ #sales_form_abc { display: block; }
+#sales_form_radio_interview:checked ~ #sales_form_interview { display: block; }
+#sales_form_radio_contract:checked ~ #sales_form_contract { display: block; }
 
 .sales_form_label {
     padding: 0.2rem 0.5rem;
     background-color: var(--inactive-color);
     border-radius: 0.2rem;
+    font-weight: bold;
 }
 #sales_form_radio_ac:checked ~ #sales_form_label_ac { background-color: var(--pentad-color1); }
 #sales_form_radio_question:checked ~ #sales_form_label_question { background-color: var(--pentad-color2); }

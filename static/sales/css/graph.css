@@ -13,13 +13,13 @@
 
 .tab_label {
     display: inline-block;
-    border-top: solid 0.1rem var(--tag-color);
-    border-left: solid 0.1rem var(--tag-color);
-    border-right: solid 0.1rem var(--tag-color);
+    border-top: solid 0.1rem var(--inactive-color);
+    border-left: solid 0.1rem var(--inactive-color);
+    border-right: solid 0.1rem var(--inactive-color);
     border-radius: 0 0.4rem 0 0;
     width: 6rem;
     height: 2rem;
-    background-color: var(--tag-color);
+    background-color: var(--inactive-color);
     cursor: pointer;
     color: white;
     font-weight: bold;

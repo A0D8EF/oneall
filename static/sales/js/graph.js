@@ -63,15 +63,13 @@ function draw_stacked_bar_graph(){
     for (let label_elem of label_elems){
         labels.push(label_elem.innerText);
     }
-    let num = value_elems.length / label_elems.length
-    console.log(num);
+    let num = value_elems.length / label_elems.length;
     for (let i=0; i<label_elems.length; i++){
         acs.push(Number( value_elems[i*num ].innerText ));
         questions.push(Number( value_elems[i*num + 1].innerText ));
         abcs.push(Number( value_elems[i*num + 2].innerText ));
         interviews.push(Number( value_elems[i*num + 3].innerText ));
         contracts.push(Number( value_elems[i*num + 4].innerText ));
-        console.log("acs[" + i + "] = " + acs[i]);
     }
 
     let colors  = [];

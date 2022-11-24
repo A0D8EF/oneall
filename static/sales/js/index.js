@@ -3,92 +3,83 @@ window.addEventListener("load", function (){
     $(".modal_label").on("click", function(){ create_sales_data_today(); });
 
     $(".create_sales_data").on("click", function() {
-        if ( !(event.target.closest(".sales_data_label")) ){
+        if ( !(event.target.closest(".sales_data_lebel")) ){
+            console.log(event.target);
             create_sales_data( $(this).data("day") );
         }
      });
 
+     const tab_radios = $(".tab_radio");
+     $(".tab_radio").on("change", (event) => {
+         for(let t of tab_radios) {
+             if( t.checked ){
+                 document.cookie = "tab=" + decodeURIComponent(t.id);
+                 document.cookie = "Path=/single";
+                 document.cookie = "SameSite=strict";
+             }
+         }
+     });
+     set_tab();
+
      draw_bar_graph();
      draw_stacked_bar_graph();
 
+     $(".ac_label").on("click", function(){ edit_ac(); });
+
 });
 
-function create_sales_data_today(){
+function set_tab() {
 
-    $("#sales_form_radio_ac").prop("checked", true);
-    change_flatpickr_today();
-    $(".sales_form_radio").on("change", function() { change_flatpickr_today() });
-
+    let tab_id = "tab_radio_1";
+    const tab_radios = $(".tab_radio");
+    
+    let cookies         = document.cookie;
+    let cookiesArray    = cookies.split(';');
+    for(let c of cookiesArray) {
+        let cArray = c.split('=');
+        if( cArray[0].trim() === "tab"){
+            tab_id  = cArray[1];
+            break;
+        }
+    }
+    for(let t of tab_radios) {
+        if( t.id == tab_id ){
+            t.checked = true;
+        }
+    }
 }
 
-function create_sales_data(calender_day){
 
-    $("#sales_form_radio_ac").prop("checked", true);
-    change_flatpickr(calender_day);
-    $(".sales_form_radio").on("change", function() { change_flatpickr(calender_day) });
+function edit_ac() {
+    console.log("edit ac");
+    $("#edit_modal_chk").prop("checked", true);
 
-    $("#modal_chk").prop("checked", true);
-}
-
-function change_flatpickr_today() {
+    let form_elem   = "#sales_edit_form_ac";
+    let data        = new FormData( $(form_elem).get(0) );
+    let url         = $(form_elem).prop("action");
     
-    let today   = new Date();
-    let year    = String(today.getFullYear());
-    let month   = ("0" + String(today.getMonth() + 1)).slice(-2);
-    let day     = ("0" + String(today.getDate())).slice(-2);
-    
-    let date    = year + "-" + month + "-" + day;
-
-    let config_date = {
-        locale: "ja",
-        dateFormat: "Y-m-d",
-        defaultDate: date
-    }
-
-    if ($("#sales_form_radio_ac").prop("checked") || $("#sales_form_radio_abc").prop("checked") || $("#sales_form_radio_interview").prop("checked") ) {
-        let hour    = ("0" + String(today.getHours()) ).slice(-2);
-        let minute  = "00";
-
-        date        += " " + hour + ":" + minute;
-        config_date = {
-            locale: "ja",
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            defaultDate: date
-    }
-    }
-
-    flatpickr(".input_date", config_date);
-}
-
-function change_flatpickr(calender_day) {
-    let year    = $("[name='year'] option:selected").val();
-    let month   = $("[name='month'] option:selected").val();
-
-    month       = ("0" + String(month)).slice(-2);
-    let day     = ("0" + String(calender_day)).slice(-2);
-    
-    let date    = year + "-" + month + "-" + day;
-
-    let config_date = {
-        locale: "ja",
-        dateFormat: "Y-m-d",
-        defaultDate: date
-    }
-
-    if ($("#sales_form_radio_ac").prop("checked") || $("#sales_form_radio_abc").prop("checked") || $("#sales_form_radio_interview").prop("checked") ) {
-        let today   = new Date();
-        let hour    = ("0" + String(today.getHours()) ).slice(-2);
-        let minute  = "00";
-
-        date        += " " + hour + ":" + minute;
-        config_date = {
-            locale: "ja",
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
-            defaultDate: date
-    }
-    }
-
-    flatpickr(".input_date", config_date);
+    $.ajax({
+        url: url,
+        type: "PUT",
+        data: data,
+        processData: false,
+        contentType: false,
+        dataType: 'json'
+    }).done( function(data, status, xhr){
+        if(!data.error){
+            // let date_id = "#date_" + id;
+            // let date    = $(date_id).val();
+            // let config_date = {
+            //     locale: "ja",
+            //     dateFormat: "Y-m-d",
+            //     defaultDate: date
+            // }
+            // flatpickr(date_id, config_date);
+            location.reload();
+        }else{
+            console.log("EDIT ERROR");
+        }
+    }).fail( function(xhr, status, error){
+        console.log(status + ":" + error );
+    });
 }

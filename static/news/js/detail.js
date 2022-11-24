@@ -32,7 +32,6 @@ function edit(){
     let form_elem   = "#news_edit_form";
     let data        = new FormData( $(form_elem).get(0) );
     let url         = $(form_elem).prop("action");
-    console.log(url);
 
     $.ajax({
         url: url,
