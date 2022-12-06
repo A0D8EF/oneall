@@ -1,0 +1,9 @@
+.icon {
+    width: 8rem;
+    height: 8rem;
+}
+.icon > img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+}

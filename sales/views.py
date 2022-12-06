@@ -15,6 +15,7 @@ from . import term_sales_data
 import datetime
 
 from django.http import HttpResponseNotFound
+from django.http.response import JsonResponse
 from django.template.loader import render_to_string
 
 from  pytz import timezone
@@ -106,41 +107,199 @@ class ACDetailView(LoginRequiredMixin,View):
         context = {}
         context["ac"]   = AC.objects.filter(id=pk).first()
         return render(request, "sales/ac_detail.html", context)
+    
+    def delete(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+        ac      = AC.objects.filter(id=pk).first()
+        if ac:
+            ac.delete()
+            data["error"] = False
 
+        return JsonResponse(data)
+    
+    def put(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+
+        ac              = AC.objects.filter(id=pk).first()
+        copied          = request.POST.copy()
+        copied["user"]  = request.user.id
+
+        form    = ACForm(copied, instance=ac)
+
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return JsonResponse(data)
+        
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
+    
 ac_detail = ACDetailView.as_view()
+
 
 class QuestionDetailView(LoginRequiredMixin,View):
 
     def get(self, request, pk, *args, **kwargs):
         context = {}
         context["q"]    = Question.objects.filter(id=pk).first()
+        context["acs"]  = AC.objects.filter(user=request.user.id).order_by("-ac_date")
         return render(request, "sales/q_detail.html", context)
+    
+    def delete(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+        q       = Question.objects.filter(id=pk).first()
+        if q:
+            q.delete()
+            data["error"] = False
+
+        return JsonResponse(data)
+    
+    def put(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+
+        q               = Question.objects.filter(id=pk).first()
+        copied          = request.POST.copy()
+        copied["user"]  = request.user.id
+
+        form    = QuestionForm(copied, instance=q)
+
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return JsonResponse(data)
+        
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
 
 q_detail = QuestionDetailView.as_view()
+
 
 class ABCDetailView(LoginRequiredMixin,View):
 
     def get(self, request, pk, *args, **kwargs):
         context = {}
         context["abc"]  = ABC.objects.filter(id=pk).first()
+        context["questions"]    = Question.objects.filter(user=request.user.id).order_by("-q_date")
         return render(request, "sales/abc_detail.html", context)
+        
+    def delete(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+        abc     = ABC.objects.filter(id=pk).first()
+        if abc:
+            abc.delete()
+            data["error"] = False
+
+        return JsonResponse(data)
+    
+    def put(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+
+        abc             = ABC.objects.filter(id=pk).first()
+        copied          = request.POST.copy()
+        copied["user"]  = request.user.id
+
+        form    = ABCForm(copied, instance=abc)
+
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return JsonResponse(data)
+        
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
 
 abc_detail = ABCDetailView.as_view()
+
 
 class InterviewDetailView(LoginRequiredMixin,View):
 
     def get(self, request, pk, *args, **kwargs):
         context = {}
         context["interview"]    = Interview.objects.filter(id=pk).first()
+        context["abcs"]         = ABC.objects.filter(user=request.user.id).order_by("-abc_date")
         return render(request, "sales/interview_detail.html", context)
 
+    def delete(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+        interview   = Interview.objects.filter(id=pk).first()
+        if interview:
+            interview.delete()
+            data["error"] = False
+
+        return JsonResponse(data)
+    
+    def put(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+
+        interview       = Interview.objects.filter(id=pk).first()
+        copied          = request.POST.copy()
+        copied["user"]  = request.user.id
+
+        form    = InterviewForm(copied, instance=interview)
+
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return JsonResponse(data)
+        
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
+
 interview_detail = InterviewDetailView.as_view()
+
 
 class ContractDetailView(LoginRequiredMixin,View):
 
     def get(self, request, pk, *args, **kwargs):
         context = {}
         context["contract"]     = Contract.objects.filter(id=pk).first()
+        context["interviews"]   = Interview.objects.filter(user=request.user.id).order_by("-interview_date")
         return render(request, "sales/contract_detail.html", context)
+        
+    def delete(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+        contract    = Contract.objects.filter(id=pk).first()
+        if contract:
+            contract.delete()
+            data["error"] = False
+
+        return JsonResponse(data)
+    
+    def put(self, request, pk, *args, **kwargs):
+        
+        data    = { "error": True }
+
+        contract        = Contract.objects.filter(id=pk).first()
+        copied          = request.POST.copy()
+        copied["user"]  = request.user.id
+
+        form    = ContractForm(copied, instance=contract)
+
+        if not form.is_valid():
+            print("バリデーションNG")
+            print(form.errors)
+            return JsonResponse(data)
+        
+        form.save()
+        data["error"]   = False
+
+        return JsonResponse(data)
 
 contract_detail = ContractDetailView.as_view()

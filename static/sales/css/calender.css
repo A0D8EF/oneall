@@ -94,3 +94,4 @@ tr .create_sales_data:nth-child(7) .calender_day { color: royalblue; }
     right: -0.6rem;
 }
 .sales_data_lebel:hover + .sales_data_c_name { display: block; }
+.sales_data_lebel:hover { color: black; }

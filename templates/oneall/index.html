@@ -4,8 +4,9 @@
 
 {% block extra_head %}
 <title>ONE/ALL</title>
-<link rel="stylesheet" href="{% static 'news/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'oneall/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'news/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'textbook/css/index.css' %}">
 {% endblock %}
 
 
@@ -26,13 +27,21 @@
 <section>
     <h2>教材</h2>
     <div class="textbook_list">
-        <a class="textbook_list_content" href="https://www.youtube.com/watch?v=zacJ9SdErqc" target="_blank" rel="noopener noreferrer">
+        <!-- <a class="textbook_list_content" href="https://www.youtube.com/watch?v=zacJ9SdErqc" target="_blank" rel="noopener noreferrer">
             <img src="https://i.ytimg.com/vi/zacJ9SdErqc/maxresdefault.jpg" alt="">
             <label aria-label="再生">
                 <i class="fa-brands fa-youtube"></i>
             </label>
             <div class="play-btn_center"></div>
-        </a>
+        </a> -->
+        {% for textbook in textbooks %}
+        <div class="textbook_list_content">
+            <div class="textbook_title">{{ textbook.title }}</div>
+            {% if textbook.file_content %}
+            <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

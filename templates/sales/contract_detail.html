@@ -6,8 +6,11 @@
 <title>営業データ －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/detail.css' %}">
-
-<script src="{% static 'sales/js/index.js' %}"></script>
+<script>
+    let DELETE_URL  = "{% url 'sales:contract_detail' 1 %}";
+    let RETURN_URL  = "{% url 'sales:index' %}"
+</script>
+<script src="{% static 'sales/js/detail.js' %}"></script>
 {% endblock %}
 
 
@@ -24,6 +27,19 @@
         <h3>契約</h3>
         <div>Cさんの名前：{{ contract.interview.abc.question.ac.c_name }}</div>
         <div>契約日：{{ contract.contract_date|date:'Y/m/d' }}</div>
+    </div>
+    <!-- 編集フォーム -->
+    <div class="sales_data_detail_edit">
+        <form action="{% url 'sales:contract_detail' contract.id %}" id="contract_edit_form">
+            <input class="date" name="contract_date" value="{{ contract.contract_date }}">
+            <select name="interview" class="form-control" style="height:2.3rem;" required>
+                {% for interview in interviews %}
+                <option value="{{ interview.id }}" {% if contract.interview.id == interview.id %}selected{% endif %}>{{ interview.abc.question.ac.c_name }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" id="submit_edit" data-salestype="contract">編集</button>
+            <label for="contract_edit_chk" class="btn btn-danger mt-2">キャンセル</label>
+        </form>
     </div>
 </div>
 {% endblock %}

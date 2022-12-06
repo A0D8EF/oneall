@@ -13,7 +13,7 @@
 <section>
     <h2>ユーザー情報</h2>
     <div>{{ request.user.handle_name }}</div>
-    <div>
+    <div class="icon">
         {% if request.user.icon %}
         <img src="{{ request.user.icon.url }}" alt="アイコン画像">
         {% endif %}
@@ -27,7 +27,7 @@
         {% csrf_token %}
         <input type="text" class="form-control" name="handle_name" value="{{ request.user.handle_name }}">
         <input type="file" name="icon">
-        <textarea name="introduction" class="form-control" value="{{ request.user.introduction }}"></textarea>
+        <textarea name="introduction" class="form-control">{{ request.user.introduction }}</textarea>
         <input type="submit" value="送信" class="btn btn-outline-primary">
     </form>
 </section>

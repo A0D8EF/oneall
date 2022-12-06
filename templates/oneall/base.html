@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{% static 'oneall/css/base.css' %}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="{% static 'oneall/js/ajax.js' %}"></script>
 
     {% block extra_head %}
     {% endblock %}
@@ -32,7 +34,7 @@
             <a href="{% url 'sales:index' %}">SALES</a>
             {# <a href="{% url 'chat:index' %}">CHAT</a> #}
             {# <a href="{% url 'qa:index' %}">Q&A</a> #}
-            {# <a href="{% url 'member:index' %}">MEMBER</a> #}
+            <a href="{% url 'users:members' %}">MEMBER</a>
             <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user"></i> MyPAGE</a>
             <a href="{% url 'account_logout' %}" style="font-size:1.5rem; color:var(--main-color);"><i class="fas fa-sign-out-alt"></i></a>
         </nav>

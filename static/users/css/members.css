@@ -1,0 +1,25 @@
+.teacher_introducttion {
+    text-align: center;
+}
+.teacher_introducttion > div {
+    border: solid var(--border-color) 1px;
+    border-radius: 0.4rem;
+    padding: 1rem;
+}
+
+.member_icon {
+    margin: 0 auto;
+
+    width: 10rem;
+    height: 10rem;
+}
+.member_icon > img {
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.member_name {
+    font-size: 2rem;
+    font-weight: bold;
+}

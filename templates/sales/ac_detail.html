@@ -6,8 +6,11 @@
 <title>営業データ －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/detail.css' %}">
-
-<script src="{% static 'sales/js/index.js' %}"></script>
+<script>
+    let DELETE_URL  = "{% url 'sales:ac_detail' 1 %}";
+    let RETURN_URL  = "{% url 'sales:index' %}"
+</script>
+<script src="{% static 'sales/js/detail.js' %}"></script>
 {% endblock %}
 
 
@@ -23,10 +26,21 @@
     <div class="sales_data_detail_content">
         <h3>AC</h3>
         <div>Cさんの名前：{{ ac.c_name }}</div>
-        <div>AC日時：{{ ac.ac_date|date:'Y/m/d H:m' }}</div>
+        <div>AC日時：{{ ac.ac_date|date:'Y/m/d H:i' }}</div>
         {% if ac.place %}
         <div>場所：{{ ac.place|linebreaksbr|default:'' }}</div>
         {% endif %}
+    </div>
+    <!-- 編集フォーム -->
+    <div class="sales_data_detail_edit">
+        <form action="{% url 'sales:ac_detail' ac.id %}" id="ac_edit_form">
+            {% csrf_token %}
+            <input class="date_time" name="ac_date" value="{{ ac.ac_date }}">
+            <input type="text" name="c_name" value="{{ ac.c_name }}">
+            <input type="text" name="place" {% if ac.place %}value="{{ ac.place }}"{% endif %}>
+            <button class="btn btn-primary" id="submit_edit" data-salestype="ac">編集</button>
+            <label for="ac_edit_chk" class="btn btn-danger mt-2">キャンセル</label>
+        </form>
     </div>
 </div>
 {% endblock %}

@@ -12,8 +12,22 @@
     display: none;
 }
 #ac_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+#q_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+#abc_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+#interview_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+#contract_edit_chk:checked ~ .sales_data_detail_edit { display: block; }
+
 #ac_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+#q_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+#abc_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+#interview_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+#contract_edit_chk:checked ~ .sales_data_detail_content { display: none; }
+
 #ac_edit_chk:checked ~ .sales_data_icons { display: none; }
+#q_edit_chk:checked ~ .sales_data_icons { display: none; }
+#abc_edit_chk:checked ~ .sales_data_icons { display: none; }
+#interview_edit_chk:checked ~ .sales_data_icons { display: none; }
+#contract_edit_chk:checked ~ .sales_data_icons { display: none; }
 
 .sales_data_icons {
     position: absolute;

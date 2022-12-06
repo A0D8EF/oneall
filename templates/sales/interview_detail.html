@@ -6,8 +6,11 @@
 <title>営業データ －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/detail.css' %}">
-
-<script src="{% static 'sales/js/index.js' %}"></script>
+<script>
+    let DELETE_URL  = "{% url 'sales:interview_detail' 1 %}";
+    let RETURN_URL  = "{% url 'sales:index' %}"
+</script>
+<script src="{% static 'sales/js/detail.js' %}"></script>
 {% endblock %}
 
 
@@ -23,7 +26,20 @@
     <div class="sales_data_detail_content">
         <h3>面談</h3>
         <div>Cさんの名前：{{ interview.abc.question.ac.c_name }}</div>
-        <div>質問日：{{ interview.interview_date|date:'Y/m/d H:m' }}</div>
+        <div>質問日：{{ interview.interview_date|date:'Y/m/d H:i' }}</div>
+    </div>
+    <!-- 編集フォーム -->
+    <div class="sales_data_detail_edit">
+        <form action="{% url 'sales:interview_detail' interview.id %}" id="interview_edit_form">
+            <input class="date_time" name="interview_date" value="{{ interview.interview_date }}">
+            <select name="abc" class="form-control" style="height:2.3rem;" required>
+                {% for abc in abcs %}
+                <option value="{{ abc.id }}" {% if interview.abc.id == abc.id %}selected{% endif %}>{{ abc.question.ac.c_name }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" id="submit_edit" data-salestype="interview">編集</button>
+            <label for="interview_edit_chk" class="btn btn-danger mt-2">キャンセル</label>
+        </form>
     </div>
 </div>
 {% endblock %}

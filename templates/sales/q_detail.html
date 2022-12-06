@@ -6,8 +6,11 @@
 <title>営業データ －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'sales/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/detail.css' %}">
-
-<script src="{% static 'sales/js/index.js' %}"></script>
+<script>
+    let DELETE_URL  = "{% url 'sales:q_detail' 1 %}";
+    let RETURN_URL  = "{% url 'sales:index' %}"
+</script>
+<script src="{% static 'sales/js/detail.js' %}"></script>
 {% endblock %}
 
 
@@ -24,6 +27,20 @@
         <h3>質問</h3>
         <div>Cさんの名前：{{ q.ac.c_name }}</div>
         <div>質問日：{{ q.q_date|date:'Y/m/d' }}</div>
+    </div>
+    <!-- 編集フォーム -->
+    <div class="sales_data_detail_edit">
+        <form action="{% url 'sales:q_detail' q.id %}" id="q_edit_form">
+            {% csrf_token %}
+            <input class="date" name="q_date" value="{{ q.q_date }}">
+            <select name="ac" class="form-control" style="height:2.3rem;" required>
+                {% for ac in acs %}
+                <option value="{{ ac.id }}" {% if q.ac.id == ac.id %}selected{% endif %}>{{ ac.c_name }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" id="submit_edit" data-salestype="q">編集</button>
+            <label for="q_edit_chk" class="btn btn-danger mt-2">キャンセル</label>
+        </form>
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends "oneall/base.html" %}
+{% load static %}
+
+
+{% block extra_head %}
+<title>MyPAGE －ONE/ALL</title>
+<link rel="stylesheet" href="{% static 'users/css/members.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<h1>MEMBER</h1>
+<section>
+    <div class="row">
+        {% for teacher in teachers %}
+        <div class="col-6 teacher_introducttion">
+            <div>
+                <div class="member_icon">
+                    {% if teacher.icon %}
+                    <img src="{{ teacher.icon.url }}"></img>
+                    {% endif %}
+                </div>
+                <div class="member_name">{{ teacher.handle_name }}</div>
+                <div class="member_introduction">{{ teacher.introduction|linebreaksbr }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

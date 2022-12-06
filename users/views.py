@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 
+from .models import CustomUser
 from .forms import CustomUserEditForm
 
 class IndexView(LoginRequiredMixin, View):
@@ -22,3 +23,19 @@ class IndexView(LoginRequiredMixin, View):
 
 
 index = IndexView.as_view()
+
+
+class MembersView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+
+        teachers = CustomUser.objects.filter(is_teacher=True).order_by("date_joined")
+        context["teachers"] = teachers
+
+        return render(request, "users/members.html", context)
+
+members = MembersView.as_view()
+
+
+
