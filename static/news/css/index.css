@@ -1,3 +1,6 @@
+#nav-menu-news { border-left: solid 0.2rem var(--main-color); }
+#nav-menu-news > a { color: var(--main-color); }
+
 .news_list {
     border: solid 0.2rem var(--border-color);
 }

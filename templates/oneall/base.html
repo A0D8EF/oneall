@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" crossorigin="anonymous">
     
@@ -23,7 +24,43 @@
     {% block extra_head %}
     {% endblock %}
 </head>
-<body>
+<body>    
+    <div class="container">
+        <div class="left-menu">
+            <a class="top-page logo-area" href="{% url 'oneall:index' %}">
+                <img src="{% static 'images/sesk_logo_vertical.jpg' %}">
+            </a>
+            <div class="nav-menu">
+                <div class="nav-menu-content" id="nav-menu-home">
+                    <a href="{% url 'oneall:index' %}"><i class="fa-solid fa-house" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>HOME</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-news">
+                    <a href="{% url 'news:index' %}"><i class="fa-solid fa-circle-info" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>NEWS</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-textbook">
+                    <a href="{% url 'textbook:index' %}"><i class="fa-solid fa-book-open" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>TEXTBOOK</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-sales">
+                    <a href="{% url 'sales:index' %}"><i class="fa-regular fa-calendar-days" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>SALES DATA</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-member">
+                    <a href="{% url 'users:members' %}"><i class="fa-solid fa-people-group" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>MEMBER</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-users">
+                    <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>MyPAGE</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-logout">
+                    <a href="{% url 'account_logout' %}" style="font-size:1.5rem; color:var(--main-color);" style="display: inline-block; width: 1.2rem; text-align: center;"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-contents">
+            {% block main %}
+            {% endblock %}
+        </div>
+    </div>
+    
+    {% comment %}
     <header>
         <a class="top-page" href="{% url 'oneall:index' %}">ONE/ALL</a>
 
@@ -43,5 +80,6 @@
         {% block main %}
         {% endblock %}
     </main>
+    {% endcomment %}
 </body>
 </html>

@@ -1,3 +1,6 @@
+#nav-menu-users { border-left: solid 0.2rem var(--main-color); }
+#nav-menu-users > a { color: var(--main-color); }
+
 .icon {
     width: 8rem;
     height: 8rem;
