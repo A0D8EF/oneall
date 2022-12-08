@@ -5,36 +5,78 @@
 {% block extra_head %}
 <title>MyPAGE －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'users/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
 {% endblock %}
 
 
 {% block main %}
 <h1>MyPAGE</h1>
 <section>
-    <h2>ユーザー情報</h2>
-    <div>{{ request.user.handle_name }}</div>
-    <div class="icon">
-        {% if request.user.icon %}
-        <img src="{{ request.user.icon.url }}" alt="アイコン画像">
-        {% endif %}
+    <div class="user_data_list">
+        <h2>ユーザー情報</h2>
+        <div>
+            <div class="user_data_label">ユーザー名</div>
+            <div class="user_name user_data_content">{{ request.user.username }}</div>
+        </div>
+        <div>
+            <div class="user_data_label">プロフィール画像</div>
+            <div class="user_icon user_data_content">
+                {% if request.user.icon %}
+                <img src="{{ request.user.icon.url }}" alt="アイコン画像">
+                {% else %}
+                <img src="{% static 'images/noimage.png' %}">
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div class="user_data_label">名前</div>
+            <div class="user_name user_data_content">{{ request.user.handle_name }}</div>
+        </div>
+        <div>
+            <div class="user_data_label">自己紹介文</div>
+            <div class="user_introduction user_data_content">{{ request.user.introduction|linebreaksbr }}</div>
+        </div>
+        <div class="icons">
+            <div class="edit_user_data">
+                <label class="modal_label" for="modal_chk">
+                    <i class="fa-solid fa-pen"></i>
+                    <span style="margin-left: 0.25rem;">ユーザー情報編集</span>
+                </label>
+            </div>
+            <div class="edit_password">
+                <a href="{% url 'account_reset_password' %}">
+                    <i class="fa-solid fa-key"></i>
+                    <span style="margin-left: 0.25rem;">パスワード変更</span>
+                </a>
+            </div>
+        </div>
     </div>
-    <div>{{ request.user.introduction }}</div>
 </section>
 
-<section>
-    <h2>ユーザー情報の編集</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" class="form-control" name="handle_name" value="{{ request.user.handle_name }}">
-        <input type="file" name="icon">
-        <textarea name="introduction" class="form-control">{{ request.user.introduction }}</textarea>
-        <input type="submit" value="送信" class="btn btn-outline-primary">
-    </form>
-</section>
-
-<section>
-    <h2>パスワードの変更</h2>
-    <a href="{% url 'account_reset_password' %}">パスワードの変更はこちら</a>
-</section>
+{# モーダル領域 #}
+<input id="modal_chk" class="modal_chk" type="checkbox">
+<div class="modal_body">
+    <label class="modal_bg" for="modal_chk"></label>
+    <div class="modal_content">
+        <h2>ユーザー情報の編集</h2>
+        <form action="" method="POST" enctype="multipart/form-data" style="position: relative;">
+            {% csrf_token %}
+            <div class="d-flex mb-2 pr-4">
+                <div class="user_edit_form_label">名前</div>
+                <input type="text" class="form-control" name="handle_name" value="{{ request.user.handle_name }}">
+            </div>
+            <div class="d-flex mb-2">
+                <div class="user_edit_form_label">アイコン</div>
+                <input type="file" name="icon">
+            </div>
+            <div class="d-flex mb-2 pr-4">
+                <div class="user_edit_form_label">自己紹介文</div>
+                <textarea name="introduction" class="form-control" rows="5">{{ request.user.introduction }}</textarea>
+            </div>
+            <input type="submit" value="送信" class="btn btn-outline-primary" style="position: absolute; bottom: -3rem; right: 1.5rem;">
+        </form>
+        <div style="height: 3rem;"></div>
+    </div>
+</div>
 
 {% endblock %}

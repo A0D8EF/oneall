@@ -17,7 +17,9 @@
             <div>
                 <div class="member_icon">
                     {% if teacher.icon %}
-                    <img src="{{ teacher.icon.url }}"></img>
+                    <img src="{{ teacher.icon.url }}" alt="{{ teacher.handle_name }}のアイコン"></img>
+                    {% else %}
+                    <img src="{% static 'images/noimage.png' %}">
                     {% endif %}
                 </div>
                 <div class="member_name">{{ teacher.handle_name }}</div>

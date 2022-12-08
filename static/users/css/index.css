@@ -1,12 +1,68 @@
 #nav-menu-users { border-left: solid 0.2rem var(--main-color); }
 #nav-menu-users > a { color: var(--main-color); }
 
-.icon {
-    width: 8rem;
-    height: 8rem;
+.user_data_list {
+    border: solid 1px var(--border-color);
+    border-radius: 0.4rem;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 90%;
+    position: relative;
 }
-.icon > img {
+.user_data_list > div {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+}
+.user_data_label {
+    width: 12rem;
+    padding: 0.5rem 0;
+    font-weight: bold;
+}
+.user_icon > img {
+    margin: 0.5rem;
     display: block;
-    width: 100%;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
+}
+
+.icons {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-flow: column;
+}
+.icons > div {
+    border-radius: 0.4rem;
+    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 11.5rem;
+    margin-bottom: 0.5rem;
+}
+.edit_user_data {
+    color: var(--main-color);
+    border: solid 0.1rem var(--main-color);
+}
+.edit_password { border: solid 0.1rem black;}
+.icons > div > label { padding: 0.2rem; margin: 0; }
+.icons > div > a {
+    padding: 0.2rem;
+    margin: 0;
+    color: black;
+}
+.icons > div > a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.user_edit_form_label {
+    display: inline-block;
+    width: 7rem;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 0.2rem;
 }
