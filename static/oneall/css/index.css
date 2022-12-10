@@ -4,6 +4,8 @@
 /* news */
 .news_list {
     border: solid 0.2rem var(--border-color);
+    width: 95%;
+    margin: 0 auto;
 }
 
 .news_list_content {
@@ -28,10 +30,11 @@
     text-align: center;
 }
 .news_category_label {
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.4rem;
     border: solid 0.1rem var(--tag-color);
-    border-radius: 0.25rem;
+    border-radius: 0.4rem;
     margin: 0;
+    font-size: 0.75rem;
 }
 .news_title {
     min-width: 15rem;

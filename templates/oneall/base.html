@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     
     <link rel="stylesheet" href="{% static 'oneall/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'oneall/css/base-sp.css' %}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -26,6 +27,7 @@
 </head>
 <body>    
     <div class="container">
+        <!-- PC用メニュー -->
         <div class="left-menu">
             <a class="top-page logo-area" href="{% url 'oneall:index' %}">
                 <img src="{% static 'images/sesk_logo_vertical.jpg' %}">
@@ -54,32 +56,53 @@
                 </div>
             </div>
         </div>
+
+        <!-- スマホ用メニュー -->
+        <div class="header-sp">
+            <a class="logo-area-sp" href="{% url 'oneall:index' %}">
+                <img src="{% static 'images/sesk_logo_beside.jpg' %}">
+            </a>
+            
+            <label class="menu-btn-sp" for="menu-sp_chk"><i class="fa-sharp fa-solid fa-bars"></i></label>
+            <input type="checkbox" id="menu-sp_chk">
+
+            <div class="nav-menu-sp">
+                <!-- <div id="close_menu">
+                    <label for="menu-sp_chk"><i class="fa-sharp fa-solid fa-circle-xmark"></i></label>
+                </div> -->
+                <div class="nav-menu-content" id="nav-menu-home">
+                    <a href="{% url 'oneall:index' %}"><i class="fa-solid fa-house" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>HOME</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-news">
+                    <a href="{% url 'news:index' %}"><i class="fa-solid fa-circle-info" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>NEWS</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-textbook">
+                    <a href="{% url 'textbook:index' %}"><i class="fa-solid fa-book-open" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>TEXTBOOK</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-sales">
+                    <a href="{% url 'sales:index' %}"><i class="fa-regular fa-calendar-days" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>SALES DATA</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-member">
+                    <a href="{% url 'users:members' %}"><i class="fa-solid fa-people-group" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>MEMBER</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-users">
+                    <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>MyPAGE</span></a>
+                </div>
+                <div class="nav-menu-content" id="nav-menu-logout">
+                    <a href="{% url 'account_logout' %}"><i class="fas fa-sign-out-alt" style="display: inline-block; width: 1.2rem; text-align: center;"></i><span>LOGOUT</span></a>
+                </div>
+            </div>
+
+            <div class="menu-sp_modal_body">
+                <label class="menu-sp_modal_bg" for="menu-sp_chk"></label>
+            </div>
+        </div>
+
         <div class="main-contents">
             {% block main %}
             {% endblock %}
         </div>
+        </div>
     </div>
-    
-    {% comment %}
-    <header>
-        <a class="top-page" href="{% url 'oneall:index' %}">ONE/ALL</a>
-
-        <nav>
-            <a href="{% url 'oneall:index' %}"><i class="fa-solid fa-house"></i> HOME</a>
-            <a href="{% url 'news:index' %}">NEWS</a>
-            <a href="{% url 'textbook:index' %}"><i class="fa-solid fa-book-open"></i> TEXTBOOK</a>
-            <a href="{% url 'sales:index' %}">SALES</a>
-            {# <a href="{% url 'chat:index' %}">CHAT</a> #}
-            {# <a href="{% url 'qa:index' %}">Q&A</a> #}
-            <a href="{% url 'users:members' %}">MEMBER</a>
-            <a href="{% url 'users:index' %}"><i class="fa-solid fa-circle-user"></i> MyPAGE</a>
-            <a href="{% url 'account_logout' %}" style="font-size:1.5rem; color:var(--main-color);"><i class="fas fa-sign-out-alt"></i></a>
-        </nav>
-    </header>
-    <main>
-        {% block main %}
-        {% endblock %}
-    </main>
-    {% endcomment %}
 </body>
 </html>
