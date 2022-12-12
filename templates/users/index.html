@@ -5,6 +5,7 @@
 {% block extra_head %}
 <title>MyPAGE －ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'users/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'users/css/index-sp.css' %}">
 <link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
 {% endblock %}
 
@@ -13,12 +14,28 @@
 <h1>MyPAGE</h1>
 <section>
     <div class="user_data_list">
-        <h2>ユーザー情報</h2>
-        <div style="margin-top: 2rem;">
+        <div class="user_data_header">
+            <h2>ユーザー情報</h2>
+            <div class="icons">
+                <div class="edit_user_data">
+                    <label class="modal_label" for="modal_chk">
+                        <i class="fa-solid fa-pen"></i>
+                        <span style="margin-left: 0.25rem;">ユーザー情報編集</span>
+                    </label>
+                </div>
+                <div class="edit_password">
+                    <a href="{% url 'account_reset_password' %}">
+                        <i class="fa-solid fa-key"></i>
+                        <span style="margin-left: 0.25rem;">パスワード変更</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="user_data_body">
             <div class="user_data_label">ユーザー名</div>
             <div class="user_name user_data_content">{{ request.user.username }}</div>
         </div>
-        <div>
+        <div class="user_data_body">
             <div class="user_data_label">プロフィール画像</div>
             <div class="user_icon user_data_content">
                 {% if request.user.icon %}
@@ -28,27 +45,13 @@
                 {% endif %}
             </div>
         </div>
-        <div>
+        <div class="user_data_body">
             <div class="user_data_label">名前</div>
             <div class="user_name user_data_content">{{ request.user.handle_name }}</div>
         </div>
-        <div>
+        <div class="user_data_body">
             <div class="user_data_label">自己紹介文</div>
             <div class="user_introduction user_data_content">{{ request.user.introduction|linebreaksbr }}</div>
-        </div>
-        <div class="icons">
-            <div class="edit_user_data">
-                <label class="modal_label" for="modal_chk">
-                    <i class="fa-solid fa-pen"></i>
-                    <span style="margin-left: 0.25rem;">ユーザー情報編集</span>
-                </label>
-            </div>
-            <div class="edit_password">
-                <a href="{% url 'account_reset_password' %}">
-                    <i class="fa-solid fa-key"></i>
-                    <span style="margin-left: 0.25rem;">パスワード変更</span>
-                </a>
-            </div>
         </div>
     </div>
 </section>

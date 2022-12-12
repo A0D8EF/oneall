@@ -16,36 +16,41 @@
 {% block main %}
 <h1>TEXTBOOK</h1>
 <section>
-    <ul class="major_category_list">
-        {% for major_category in major_categories %}
-        <li>{{ major_category.name }}
-            <ul class="minor_category_list">
-            {% for minor_category in minor_categories %}
-            {% if minor_category.parent.id == major_category.id %}
-                <li>{{ minor_category.name }}</li>
-            {% endif %}
-            {% endfor %}
+    <div class="d-flex">
+        <div class="category_list_area">
+            <ul class="major_category_list">
+                {% for major_category in major_categories %}
+                <li>{{ major_category.name }}
+                    <ul class="minor_category_list">
+                    {% for minor_category in minor_categories %}
+                    {% if minor_category.parent.id == major_category.id %}
+                        <li>{{ minor_category.name }}</li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
             </ul>
-        </li>
-        {% endfor %}
-    </ul>
-</section>
-<section>
-    <h2>教材一覧</h2>
-    <div class="textbook_list">
-        {% for textbook in textbooks %}
-        <div class="textbook_list_content">
-            <div class="textbook_title">{{ textbook.title }}</div>
-            {% if textbook.file_content %}
-            <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+        </div>
+        
+        <div class="textbook_list_area">
+            <h2>教材一覧</h2>
+            <div class="textbook_list">
+                {% for textbook in textbooks %}
+                <div class="textbook_list_content">
+                    <div class="textbook_title">{{ textbook.title }}</div>
+                    {% if textbook.file_content %}
+                    <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            {% if request.user.is_teacher %}
+            {% include 'textbook/textbook_form.html' %}
             {% endif %}
         </div>
-        {% endfor %}
     </div>
 </section>
-
-{% if request.user.is_teacher %}
-{% include 'textbook/textbook_form.html' %}
-{% endif %}
 
 {% endblock %}

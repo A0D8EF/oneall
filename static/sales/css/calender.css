@@ -58,11 +58,21 @@
 tr .create_sales_data:nth-child(1) .calender_day { color: crimson; }
 tr .create_sales_data:nth-child(7) .calender_day { color: royalblue; }
 
-.add_sales_data {
-    position: absolute;
-    bottom: 0.5;
-    right: 2.5rem;
+@media screen and (min-width: 1000px) {
+    .add_sales_data {
+        position: absolute;
+        bottom: -3.5rem;
+        right: 2.5rem;
+    }
 }
+@media screen and (max-width: 999px) {
+    .add_sales_data {
+        position: absolute;
+        bottom: -3rem;
+        right: 2.5rem;
+    }
+}
+
 /* ラベル */
 .sales_data_lebel {
     font-size: 0.8rem;

@@ -5,6 +5,7 @@
 {% block extra_head %}
 <title>ONE/ALL</title>
 <link rel="stylesheet" href="{% static 'oneall/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'oneall/css/index-sp.css' %}">
 <!-- <link rel="stylesheet" href="{% static 'news/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'textbook/css/index.css' %}"> -->
 {% endblock %}
@@ -36,10 +37,10 @@
         </a> -->
         {% for textbook in textbooks %}
         <div class="textbook_list_content">
-            <div class="textbook_title">{{ textbook.title }}</div>
             {% if textbook.file_content %}
             <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
             {% endif %}
+            <div class="textbook_title">{{ textbook.title }}</div>
         </div>
         {% endfor %}
     </div>

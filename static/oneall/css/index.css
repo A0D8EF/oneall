@@ -43,14 +43,16 @@
 }
 
 /* textbook */
-.textbook_list_content {
-    display: inline-block;
-    width: 30%;
-    position: relative;
+@media screen and (min-width: 768px) {
+    .textbook_list_content {
+        display: inline-block;
+        width: 30%;
+        position: relative;
 
-    cursor: pointer;
-}
+        cursor: pointer;
+    }
 
+    /*
 .textbook_list_content > img {
     width: 100%;
     z-index: 10;
@@ -83,4 +85,9 @@
     left: 50%;
 
     transform: translate(-50%, -50%);
+}
+*/
+
+    .textbook_list_content > video { width: 100%; }
+    .textbook_title { text-align: center; }
 }

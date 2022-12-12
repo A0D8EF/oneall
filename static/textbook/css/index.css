@@ -1,10 +1,12 @@
 #nav-menu-textbook { border-left: solid 0.2rem var(--main-color); }
 #nav-menu-textbook > a { color: var(--main-color); }
 
-.major_category_list, .minor_category_list {
-    list-style: none;
-}
+.major_category_list, .minor_category_list { list-style: none; }
+.major_category_list { padding: 0; }
+.minor_category_list { padding-left: 1.5rem; }
+li { margin: 0.2rem 0.5rem; }
 
+.textbook_list_area { margin-left: 2rem; flex-grow: 1; }
 .textbook_list {
     display: flex;
     flex-wrap: wrap;

@@ -1,16 +1,9 @@
-#nav-menu-member { border-left: solid 0.2rem var(--main-color); }
-#nav-menu-member > a { color: var(--main-color); }
-
-@media screen and (min-width: 768px) {
-    .member_list_area {
-        display: flex;
-        flex-wrap: wrap;
-    }
+@media screen and (max-width: 767px) {
+    .member_list_area { width: 100%; }
     .teacher_introducttion {
-        min-width: 400px;
+        width: 95%;
+        min-width: 300px;
         margin: 0 auto 1rem auto;
-        padding: 0 0.5rem;
-        flex: 1;
     }
     .teacher_introducttion > div {
         text-align: center;

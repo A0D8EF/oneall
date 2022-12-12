@@ -1,7 +1,4 @@
-#nav-menu-users { border-left: solid 0.2rem var(--main-color); }
-#nav-menu-users > a { color: var(--main-color); }
-
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 767px) {
     
     .user_data_list {
         border: solid 1px var(--border-color);
@@ -14,17 +11,25 @@
     .user_data_header {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
     }
     .user_data_body {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         min-height: 3rem;
         margin-left: 1rem;
-        padding: 0.5rem 0;
+        padding: 1rem 0 0 0;
     }
     .user_data_label {
-        width: 12rem;
+        width: 10rem;
         font-weight: bold;
+    }
+    .user_data_content {
+        padding-left: 0.5rem;
+        width: calc(100% - 10rem);
+        min-width: 12rem;
     }
     .user_icon > img {
         margin: 0.5rem;
@@ -35,6 +40,9 @@
     }
 
     .icons {
+        /* position: absolute;
+        top: 1rem;
+        right: 1rem; */
         display: flex;
         flex-flow: column;
     }

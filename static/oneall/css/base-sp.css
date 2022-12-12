@@ -20,6 +20,7 @@
     }
     .main-contents {
         width: 100%;
+        min-width: 355px;
         position: fixed;
         top: 4rem;
         left: 0;
@@ -74,7 +75,7 @@
     
     .nav-menu-content {
         display: block;
-        padding: 0.5rem 3rem 0.5rem 1rem;
+        padding: 0.5rem 5rem 0.5rem 1rem;
     }
     .nav-menu-content > a {
         display: inline-block;
