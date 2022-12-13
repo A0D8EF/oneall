@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     "news.apps.NewsConfig",
     "news.templatetags.param_change",
     "textbook.apps.TextbookConfig",
+    "textbook.templatetags.url_change",
     "sales.apps.SalesConfig",
     
     "rest_framework",

@@ -17,6 +17,18 @@
     --border-color: rgb(221, 221, 221);
 }
 
+.to_upper_layer { color: black; }
+.to_upper_layer:hover { color: var(--main-color); }
+.bottom_layer {
+    color: black;
+    font-weight: bold;
+}
+.bottom_layer:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 768px) {
     .container {
         width: 100%;

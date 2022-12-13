@@ -9,6 +9,8 @@ class MajorCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def str_id(self):
+        return str(self.id)
 
 class MinorCategory(models.Model):
     name    = models.CharField(verbose_name="小カテゴリ名", max_length=20)
@@ -18,6 +20,8 @@ class MinorCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def str_id(self):
+        return str(self.id)
 
 class Textbook(models.Model):
     dt              = models.DateTimeField(verbose_name="投稿日時", default=timezone.now)
@@ -29,6 +33,7 @@ class Textbook(models.Model):
     is_youtube      = models.BooleanField(verbose_name="Youtubeか", default=False)
     youtube_url     = models.URLField(verbose_name="YoutubeURL", null=True, blank=True)
 
+    major_category  = models.ForeignKey(MajorCategory, verbose_name="大カテゴリ", on_delete=models.PROTECT)
     minor_category  = models.ForeignKey(MinorCategory, verbose_name="小カテゴリ", on_delete=models.PROTECT)
 
     def __str__(self):

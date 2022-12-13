@@ -6,7 +6,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 from .models import MajorCategory, MinorCategory, Textbook
-from .forms import TextbookForm, MajorCategoryForm
+from .forms import TextbookForm, MajorCategoryForm, MinorCategoryForm
+from .forms import MajorCategorySearchForm, MinorCategorySearchForm
 
 from django.contrib import messages
 
@@ -17,8 +18,27 @@ from django.template.loader import render_to_string
 class IndexView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         context = {}
+        query   = Q()
         
-        textbooks   = Textbook.objects.all().order_by("-dt")[:5]
+        if "search" in request.GET:
+            search      = request.GET["search"]
+            raw_words   = search.replace("　"," ").split(" ")
+            words       = [ w for w in raw_words if w != ""]
+
+            for w in words:
+                query &= Q(title__contains=w)
+        
+        form    = MajorCategorySearchForm(request.GET)        
+        if form.is_valid():
+            cleaned = form.clean()
+            query   &= Q(major_category=cleaned["major_category"].id)
+        
+        form    = MinorCategorySearchForm(request.GET)
+        if form.is_valid():
+            cleaned = form.clean()
+            query   &= Q(minor_category=cleaned["minor_category"].id)
+        
+        textbooks   = Textbook.objects.filter(query).order_by("-dt")
         paginator   = Paginator(textbooks, 10)
 
         if "page" in request.GET:

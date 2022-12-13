@@ -1,0 +1,37 @@
+@media screen and (max-width: 549px) {
+    section > div { flex-flow: column; }
+    .category_list_area {
+        width: 95%;
+        min-width: 200px;
+        margin: 0 auto 1rem auto;
+    }
+
+    .minor_category_list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .minor_category_list > li { margin: 0 0.5rem; }
+
+    /* .textbook_list_area { margin-left: 2rem; flex-grow: 1; } */
+    .textbook_list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .textbook_list_content {
+        position: relative;
+        width: 20rem;
+        max-height: 15rem;
+        margin: 1rem;
+    }
+    .textbook_title {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 0.2rem;
+    }
+    .textbook_list_content > video {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        z-index: 10;
+    }
+}

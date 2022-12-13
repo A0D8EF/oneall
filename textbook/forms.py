@@ -1,5 +1,5 @@
 from django import forms
-from .models import Textbook, MajorCategory
+from .models import Textbook, MajorCategory, MinorCategory
 
 from django.core.exceptions import ValidationError
 
@@ -7,7 +7,7 @@ class TextbookForm(forms.ModelForm):
 
     class Meta:
         model   = Textbook
-        fields  = ["user", "title", "thumbnail", "file_content", "minor_category", "is_youtube", "youtube_url"]
+        fields  = ["user", "title", "thumbnail", "file_content", "major_category", "minor_category", "is_youtube", "youtube_url"]
     
     def clean(self):
         data    = self.cleaned_data
@@ -25,3 +25,24 @@ class MajorCategoryForm(forms.ModelForm):
     class Meta:
         model   = MajorCategory
         fields  = ["name"]
+
+class MinorCategoryForm(forms.ModelForm):
+
+    class Meta:
+        model   = MinorCategory
+        fields  = ["name"]
+
+
+class MajorCategorySearchForm(forms.ModelForm):
+
+    class Meta:
+        model   = Textbook
+        fields  = ["major_category"]
+
+
+class MinorCategorySearchForm(forms.ModelForm):
+
+    class Meta:
+        model   = Textbook
+        fields  = ["minor_category"]    
+
