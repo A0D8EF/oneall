@@ -30,7 +30,7 @@ class MinorCategoryForm(forms.ModelForm):
 
     class Meta:
         model   = MinorCategory
-        fields  = ["name"]
+        fields  = ["parent","name"]
 
 
 class MajorCategorySearchForm(forms.ModelForm):

@@ -1,6 +1,12 @@
-<div style="margin-top: 2rem;">
+<div style="margin-top: 2rem; min-width: 444px;">
     <h2>教材投稿</h2>
     <form action="" method="POST" enctype="multipart/form-data" class="textbook_form">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="error_message">{{ message }}</div>
+        {% endif %}
+        {% endfor %}
+
         {% csrf_token %}
         <div>
             <label class="textbook_form_label">大カテゴリ</label>
@@ -46,4 +52,49 @@
         </div>
         <input type="submit" value="送信" class="original_btn original_btn_send">
     </form>
+</div>
+
+{# モーダル領域 #}
+<input id="modal_chk_major" class="modal_chk" type="checkbox">
+<div class="modal_body">
+    <label class="modal_bg" for="modal_chk_major"></label>
+    <div class="modal_content">
+        <h2>大カテゴリ新規追加</h2>
+        <form id="textbook_major_category_form" method="POST" action="{% url 'textbook:add_major_category' %}">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="大カテゴリ名">
+            <input class="original_btn" style="padding: 0.2rem 0.5rem;" type="submit" value="登録">
+            <label for="modal_chk_major" class="original_btn_cancel">キャンセル</label>
+        </form>
+        <h2 style="margin-top: 1rem;">大カテゴリ一覧</h2>
+        <div id="textbook_major_category_list">
+            {% for major_category in major_categories %}
+            <label>{{ major_category.name }}</label>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<input id="modal_chk_minor" class="modal_chk" type="checkbox">
+<div class="modal_body">
+    <label class="modal_bg" for="modal_chk_minor"></label>
+    <div class="modal_content">
+        <h2>大カテゴリ新規追加</h2>
+        <form id="textbook_minor_category_form" method="POST" action="{% url 'textbook:add_minor_category' %}">
+            {% csrf_token %}
+            <div class="mb-2">
+                <select name="parent" class="form-control" style="height: 2.5rem;">
+                    <option disabled selected>大カテゴリを選択してください</option>
+                    {% for major_category in major_categories %}
+                    <option value="{{ major_category.id }}">{{ major_category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-2">
+                <input type="text" name="name" placeholder="小カテゴリ名" class="form-control">
+            </div>
+            <input class="original_btn" style="padding: 0.2rem 0.5rem;" type="submit" value="登録">
+            <label for="modal_chk_minor" class="original_btn_cancel">キャンセル</label>
+        </form>
+    </div>
 </div>

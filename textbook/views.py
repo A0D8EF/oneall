@@ -99,33 +99,48 @@ class AddMajorCategoryView(LoginRequiredMixin, View):
         major_categories    = MajorCategory.objects.all()
         copied              = request.POST.copy()
 
-        data    = { "error": True }
-
-        for c in major_categories:
-            if copied["name"] == c.name:
-                messages.info(request, '既に存在するカテゴリです')
-                return redirect("textbook:index")
-        
         form    = MajorCategoryForm(copied)
         if not form.is_valid():
             print(form.errors)
-            return JsonResponse(data)
+            
+            values  = form.errors.get_json_data().values()
+            for value in values:
+                for v in value:
+                    messages.error(request, v["message"])
+            
+            return redirect("textbook:index")
         
         print("バリデーションOK")
         form.save()
-        data["error"]   = False
 
-        return JsonResponse(data)
+        return redirect("textbook:index")
 
 
 add_major_category = AddMajorCategoryView.as_view()
 
 
 class AddMinorCategoryView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        data    = { "error": True }
+    def post(self, request, *args, **kwargs):
 
-        return JsonResponse(data)
+        minor_categories    = MinorCategory.objects.all()
+        copied              = request.POST.copy()
+
+        form    = MinorCategoryForm(copied)
+        if not form.is_valid():
+            print(form.errors)
+            
+            # values  = form.errors.get_json_data().values()
+            # for value in values:
+            #     for v in value:
+            #         messages.error(request, v["message"])
+            
+            return redirect("textbook:index")
+        
+        print("バリデーションOK")
+        form.save()
+
+        return redirect("textbook:index")
+
 
 
 add_minor_category = AddMinorCategoryView.as_view()

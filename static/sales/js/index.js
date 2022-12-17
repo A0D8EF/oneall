@@ -22,13 +22,17 @@ window.addEventListener("load", function (){
      set_tab();
 
     if ($(".sales_top").data("is_teacher") === "True") {
-        // draw_teacher_monthly_graph($(".teacher_tab_radio").data(0));
+        if($(".teacher_tab_radio").prop("checked")){
+            console.log("console")
+            console.log($(".teacher_tab_radio").data("num"));
+            // draw_teacher_monthly_graph(0);
+            // draw_teacher_yearly_graph(0);
+        }
         $(".teacher_tab_radio").on("change", function() {
             if($(this).data("num") !== 0) {
                 draw_teacher_monthly_graph($(this).data("num"));
                 draw_teacher_yearly_graph($(this).data("num"));
-            }
-            // else {
+            }// else {
             //     draw_teacher_stacked_bar_graph($(this).data("num"));
             // } 
         })

@@ -53,3 +53,11 @@ input[type="checkbox"].is_youtube_chk:checked + .is_youtube_label::before {
     left: 0;
     background: crimson;
 }
+
+
+#textbook_major_category_list > label {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border: solid 0.1rem var(--tag-color);
+    border-radius: 0.2rem;
+}
