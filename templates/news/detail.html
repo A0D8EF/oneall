@@ -15,6 +15,13 @@
 
 {% block main %}
 <h1>NEWS</h1>
+<div class="nav_link">
+    <a href="{% url 'oneall:index' %}" class="to_upper_layer">ホーム</a>
+    <span style="padding: 0 0.25rem">></span>
+    <a href="{% url 'news:index' %}" class="to_upper_layer">お知らせ一覧</a>
+    <span style="padding: 0 0.25rem">></span>
+    <a href="" class="bottom_layer">{{ news.title }}</a>
+</div>
 <div class="news_detail border">
     {% comment %}
     {% if request.user.is_teacher %}

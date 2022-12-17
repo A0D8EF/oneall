@@ -2,26 +2,22 @@
 #nav-menu-sales > a { color: var(--main-color); }
 
 @media screen and (min-width: 1000px) {
-    .sales_top {
+    .student_sales_top {
         display: flex;
     }
-
-    /*--------------------------------------------------------
-    カレンダー
-    ------------------------------------------------------- */
     .calender_area {
         width: 50%;
         padding: 1rem;
         position: relative;
     }
-
-
-    /*--------------------------------------------------------
-    グラフ
-    ------------------------------------------------------- */
     .graph_area {
         width: 50%;
         padding: 1rem;
+    }
+
+    .teacher_monthly_graph_area, .teacher_yearly_graph_area {
+        width: 50%;
+        padding: 0 1rem 0.5rem 1rem;
     }
 }
 

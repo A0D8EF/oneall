@@ -18,7 +18,29 @@
 {% block main %}
 <h1>TEXTBOOK</h1>
 <section>
-    <div>
+    <div class="nav_link">
+        <a href="{% url 'oneall:index' %}" class="to_upper_layer">ホーム</a>
+        <span style="padding: 0 0.25rem">></span>
+        <a href="{% url 'textbook:index' %}" {% if request.GET.major_category or request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>教材トップ</a>
+        {% if request.GET.major_category %}
+            <span style="padding: 0 0.25rem">></span>
+            {% for major_category in major_categories %}
+            {% if request.GET.major_category == major_category.str_id %}
+            <a href="?{% url_replace request 'major_category' major_category.id %}" {% if request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>{{ major_category.name }}</a>
+            {% endif %}
+            {% endfor %}
+        {% elif request.GET.minor_category %}
+            <span style="padding: 0 0.25rem">></span>
+            {% for minor_category in minor_categories %}
+            {% if request.GET.minor_category == minor_category.str_id %}
+            <a href="?{% url_replace request 'major_category' minor_category.parent.id %}" class="to_upper_layer">{{ minor_category.parent.name }}</a>
+            <span style="padding: 0 0.25rem">></span>
+            <a href="?{% url_replace request 'minor_category' minor_category.id %}" class="bottom_layer">{{ minor_category.name }}</a>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="d-flex">
         <div class="category_list_area">
             <ul class="major_category_list">
                 {% for major_category in major_categories %}
@@ -36,28 +58,6 @@
         
         <div class="textbook_list_area">
             <h2>教材一覧</h2>
-            <div class="nav_link">
-                <a href="{% url 'oneall:index' %}" class="to_upper_layer">ホーム</a>
-                <span style="padding: 0 0.25rem">></span>
-                <a href="{% url 'textbook:index' %}" {% if request.GET.major_category or request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>教材トップ</a>
-                {% if request.GET.major_category %}
-                    <span style="padding: 0 0.25rem">></span>
-                    {% for major_category in major_categories %}
-                    {% if request.GET.major_category == major_category.str_id %}
-                    <a href="?{% url_replace request 'major_category' major_category.id %}" {% if request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>{{ major_category.name }}</a>
-                    {% endif %}
-                    {% endfor %}
-                {% elif request.GET.minor_category %}
-                    <span style="padding: 0 0.25rem">></span>
-                    {% for minor_category in minor_categories %}
-                    {% if request.GET.minor_category == minor_category.str_id %}
-                    <a href="?{% url_replace request 'major_category' minor_category.parent.id %}" class="to_upper_layer">{{ minor_category.parent.name }}</a>
-                    <span style="padding: 0 0.25rem">></span>
-                    <a href="?{% url_replace request 'minor_category' minor_category.id %}" class="bottom_layer">{{ minor_category.name }}</a>
-                    {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </div>
             <div class="textbook_list">
                 {% for textbook in textbooks %}
                 <div class="textbook_list_content">

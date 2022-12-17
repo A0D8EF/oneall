@@ -21,9 +21,24 @@ window.addEventListener("load", function (){
      });
      set_tab();
 
-     draw_bar_graph();
-     draw_stacked_bar_graph();
-
+    if ($(".sales_top").data("is_teacher") === "True") {
+        // draw_teacher_monthly_graph($(".teacher_tab_radio").data(0));
+        $(".teacher_tab_radio").on("change", function() {
+            if($(this).data("num") !== 0) {
+                draw_teacher_monthly_graph($(this).data("num"));
+                draw_teacher_yearly_graph($(this).data("num"));
+            }
+            // else {
+            //     draw_teacher_stacked_bar_graph($(this).data("num"));
+            // } 
+        })
+    
+    }else {
+        draw_bar_graph();
+        draw_stacked_bar_graph();
+    }
+    
+    
      $(".ac_label").on("click", function(){ edit_ac(); });
 
 });

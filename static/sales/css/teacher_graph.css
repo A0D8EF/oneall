@@ -1,0 +1,42 @@
+/* tab system */
+.teacher_tab_radio { display: none; }
+
+/* @media screen and (max-width: 999px) { .tab_area { max-height: 60vh; } } */
+.teacher_tab_label {
+    display: inline-block;
+    border-top: solid 0.1rem var(--inactive-color);
+    border-left: solid 0.1rem var(--inactive-color);
+    border-right: solid 0.1rem var(--inactive-color);
+    border-radius: 0 0.4rem 0 0;
+    width: 6rem;
+    height: 2rem;
+    background-color: var(--inactive-color);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.teacher_tab_radio:checked + .teacher_tab_label {
+    background-color: var(--main-color);
+    border-top: solid 0.1rem var(--main-color);
+    border-left: solid 0.1rem var(--main-color);
+    border-right: solid 0.1rem var(--main-color);
+}
+
+@media screen and (min-width: 1000px) {
+    .teacher_tab_area {
+        display: none;
+        border: solid 0.1rem var(--main-color);
+        border-radius: 0 0.4rem 0.4rem 0.4rem;
+        margin-top: 0;
+        padding: 1.5rem;
+    }
+    #teacher_tab_radio_1:checked ~ #teacher_tab_area_1 { display: flex; text-align: center; }
+    #teacher_tab_radio_2:checked ~ #teacher_tab_area_2 { display: flex; text-align: center; }
+    #teacher_tab_radio_3:checked ~ #teacher_tab_area_3 { display: flex; text-align: center; }
+    #teacher_tab_radio_4:checked ~ #teacher_tab_area_4 { display: flex; text-align: center; }
+    #teacher_tab_radio_5:checked ~ #teacher_tab_area_5 { display: flex; text-align: center; }
+    #teacher_tab_radio_6:checked ~ #teacher_tab_area_6 { display: flex; text-align: center; }
+}

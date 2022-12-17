@@ -1,8 +1,6 @@
 #nav-menu-textbook { border-left: solid 0.2rem var(--main-color); }
 #nav-menu-textbook > a { color: var(--main-color); }
 
-section > div { display: flex; }
-
 @media screen and (min-width: 550px) {
     .category_list_area { min-width: 200px; }
 

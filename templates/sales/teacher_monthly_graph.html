@@ -1,0 +1,35 @@
+<!-- 月間 -->
+{% include "sales/calender_header.html" %}
+<canvas id="teacher_monthly_graph_{{ num }}"></canvas>
+<div class="monthly_sales_data_list" style="display: none;">
+    <table>
+        {% for monthly_sales_data in monthly_sales_datas %}
+        {% if student.username == monthly_sales_data.user %}
+        <tr>
+            <td>{{ student.username }}</td>
+            <td>{{ num }}</td>
+        </tr>
+        <tr>
+            <td><span class="monthly_sales_data_label_{{ num }}">AC</span></td>
+            <td><span class="monthly_sales_data_value_{{ num }}">{{ monthly_sales_data.data.acs }}</span></td>
+        </tr>
+        <tr>
+            <td><span class="monthly_sales_data_label_{{ num }}">質問</span></td>
+            <td><span class="monthly_sales_data_value_{{ num }}">{{ monthly_sales_data.data.questions }}</span></td>
+        </tr>
+        <tr>
+            <td><span class="monthly_sales_data_label_{{ num }}">ABC</span></td>
+            <td><span class="monthly_sales_data_value_{{ num }}">{{ monthly_sales_data.data.abcs }}</span></td>
+        </tr>
+        <tr>
+            <td><span class="monthly_sales_data_label_{{ num }}">面談</span></td>
+            <td><span class="monthly_sales_data_value_{{ num }}">{{ monthly_sales_data.data.interviews }}</span></td>
+        </tr>
+        <tr>
+            <td><span class="monthly_sales_data_label_{{ num }}">契約</span></td>
+            <td><span class="monthly_sales_data_value_{{ num }}">{{ monthly_sales_data.data.contracts }}</span></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>

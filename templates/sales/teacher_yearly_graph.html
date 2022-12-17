@@ -1,0 +1,20 @@
+<!-- 年間 -->
+{% include "sales/calender_header.html" %}
+<!-- <div style="text-align: center;">年間営業データ</div> -->
+<canvas id="teacher_yearly_graph_{{ num }}"></canvas>
+<div class="yearly_sales_data_list" style="display: none;">
+    <table>
+        {% for yearly_sales_data in yearly_sales_datas %}
+        {% if student.username == yearly_sales_data.user %}
+        <tr>
+            <td><span class="yearly_sales_data_label_{{ num }}">{{ yearly_sales_data.data.year }}/{{ yearly_sales_data.data.month }}</span></td>
+            <td><span class="yearly_sales_data_value_{{ num }}">{{ yearly_sales_data.data.acs }}</span></td>
+            <td><span class="yearly_sales_data_value_{{ num }}">{{ yearly_sales_data.data.questions }}</span></td>
+            <td><span class="yearly_sales_data_value_{{ num }}">{{ yearly_sales_data.data.abcs }}</span></td>
+            <td><span class="yearly_sales_data_value_{{ num }}">{{ yearly_sales_data.data.interviews }}</span></td>
+            <td><span class="yearly_sales_data_value_{{ num }}">{{ yearly_sales_data.data.contracts }}</span></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>

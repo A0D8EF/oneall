@@ -1,21 +1,32 @@
 @media screen and (max-width: 999px) {
     
-    /*--------------------------------------------------------
-    カレンダー
-    ------------------------------------------------------- */
     .calender_area {
         width: 95%;
         padding: 1rem;
         position: relative;
         margin: 2rem auto;
     }
-
-    /*--------------------------------------------------------
-    グラフ
-    ------------------------------------------------------- */
     .graph_area {
         width: 95%;
         padding: 1rem;
         margin: 2rem auto 3rem auto;
     }
+
+    .teacher_monthly_graph_area, .teacher_yearly_graph_area {
+        width: 95%;
+        padding: 0 1rem 2rem 1rem;
+    }
+    .teacher_tab_area {
+        display: none;
+        border: solid 0.1rem var(--main-color);
+        border-radius: 0 0.4rem 0.4rem 0.4rem;
+        margin-top: 0;
+        padding: 1rem 0.5rem;
+    }
+    #teacher_tab_radio_1:checked ~ #teacher_tab_area_1 { display: block; }
+    #teacher_tab_radio_2:checked ~ #teacher_tab_area_2 { display: block; }
+    #teacher_tab_radio_3:checked ~ #teacher_tab_area_3 { display: block; }
+    #teacher_tab_radio_4:checked ~ #teacher_tab_area_4 { display: block; }
+    #teacher_tab_radio_5:checked ~ #teacher_tab_area_5 { display: block; }
+    #teacher_tab_radio_6:checked ~ #teacher_tab_area_6 { display: block; }
 }

@@ -9,8 +9,10 @@ from django.db.models import Sum
 from .models import AC, Question, ABC, Interview, Contract
 from .forms import ACForm, QuestionForm, ABCForm, InterviewForm, ContractForm, YearMonthForm
 
+from users.models import CustomUser
+
 from . import calender, set_selected_date
-from . import term_sales_data
+from . import term_sales_data, teacher_sales_data
 
 import datetime
 
@@ -42,18 +44,21 @@ class IndexView(LoginRequiredMixin,View):
             context["abcs"]         = ABC.objects.all().order_by("-abc_date")
             context["interviews"]   = Interview.objects.all().order_by("-interview_date")
             context["contracts"]    = Contract.objects.all().order_by("-contract_date")
+
+            context["students"]     = CustomUser.objects.filter(is_student=True).order_by("date_joined")
+            context["monthly_sales_datas"]  = teacher_sales_data.monthly(request, selected_date)
+            context["yearly_sales_datas"]   = teacher_sales_data.yearly(request, selected_date)
+
         else:
             context["acs"]          = AC.objects.filter(user=request.user.id).order_by("-ac_date")
             context["questions"]    = Question.objects.filter(user=request.user.id).order_by("-q_date")
             context["abcs"]         = ABC.objects.filter(user=request.user.id).order_by("-abc_date")
             context["interviews"]   = Interview.objects.filter(user=request.user.id).order_by("-interview_date")
             context["contracts"]    = Contract.objects.filter(user=request.user.id).order_by("-contract_date")
+            
+            context["monthly_sales_datas"]  = term_sales_data.monthly(request, selected_date)
+            context["yearly_sales_datas"]   = term_sales_data.yearly(request, selected_date)
         
-        # 月間データ
-        context["monthly_sales_datas"]  = term_sales_data.monthly(request, selected_date)
-        
-        # 年間データ
-        context["yearly_sales_datas"]   = term_sales_data.yearly(request, selected_date)
 
         return render(request, "sales/index.html", context)
     

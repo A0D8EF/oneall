@@ -10,26 +10,58 @@
 <link rel="stylesheet" href="{% static 'sales/css/sales_form.css' %}">
 <link rel="stylesheet" href="{% static 'oneall/css/modal_diagram.css' %}">
 <link rel="stylesheet" href="{% static 'sales/css/graph.css' %}">
+<link rel="stylesheet" href="{% static 'sales/css/teacher_graph.css' %}">
 
 <script src="{% static 'sales/js/index.js' %}"></script>
 <script src="{% static 'sales/js/sales_form.js' %}"></script>
 <script src="{% static 'sales/js/graph.js' %}"></script>
+<script src="{% static 'sales/js/teacher_graph.js' %}"></script>
 {% endblock %}
 
 
 {% block main %}
 <h1>SALES DATA</h1>
-<div class="sales_top">
+{% if request.user.is_teacher %}
+<div class="teacher_sales_top sales_top" data-is_teacher="True">
+    <!-- タブシステム -->
+    <input type="radio" name="tab_system" id="teacher_tab_radio_0" class="teacher_tab_radio" data-num="0" checked><label for="teacher_tab_radio_0" class="teacher_tab_label">全員分</label>
+    {% for student in students %}
+    <input type="radio" name="tab_system" id="teacher_tab_radio_{{ forloop.counter }}" class="teacher_tab_radio" data-num="{{ forloop.counter }}"><label for="teacher_tab_radio_{{ forloop.counter }}" class="teacher_tab_label">{{ student.handle_name }}</label>
+    {% endfor %}
+    
+    {% for student in students %}
+    <div id="teacher_tab_area_{{ forloop.counter }}" class="teacher_tab_area">
+        <div class="teacher_monthly_graph_area">
+            {% include "sales/teacher_monthly_graph.html" with student=student num=forloop.counter %}
+        </div>
+        <div class="teacher_yearly_graph_area">
+            {% include "sales/teacher_yearly_graph.html" with student=student num=forloop.counter %}
+        </div>
+    </div>
+    {% endfor %}
+    {% comment %}
+    <div id="teacher_tab_area_0" class="teacher_tab_area">
+        <div class="teacher_monthly_graph_area">
+            {% include "sales/teacher_all_monthly_graph.html" %}
+        </div>
+        <div class="teacher_yearly_graph_area">
+            {% include "sales/teacher_all_yearly_graph.html" with student=student %}
+        </div>
+    </div>
+    {% endcomment %}
+</div>
+{% else %}
+<div class="student_sales_top sales_top" data-is_teacher="False">
     <!-- カレンダー -->
     <div class="calender_area">
         {% include "sales/calender.html" %}
     </div>
-
     <!-- グラフ -->
     <div class="graph_area">
         {% include "sales/graph.html" %}
     </div>
 </div>
+{% endif %}
 
 {% if request.user.is_student %}
 {% include "sales/sales_form.html" %}
