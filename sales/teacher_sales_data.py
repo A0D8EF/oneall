@@ -44,6 +44,20 @@ def monthly(request, selected_date):
         #   ...
         # }
     
+    dic         = {}
+    dic_in_dic  = {}
+    dic_in_dic["acs"]          = AC.objects.filter(ac_date__year=selected_date.year, ac_date__month=selected_date.month).count()
+    dic_in_dic["questions"]    = Question.objects.filter(q_date__year=selected_date.year, q_date__month=selected_date.month).count()
+    dic_in_dic["abcs"]         = ABC.objects.filter(abc_date__year=selected_date.year, abc_date__month=selected_date.month).count()
+    dic_in_dic["interviews"]   = Interview.objects.filter(interview_date__year=selected_date.year, interview_date__month=selected_date.month).count()
+    dic_in_dic["contracts"]    = Contract.objects.filter(contract_date__year=selected_date.year, contract_date__month=selected_date.month).count()
+
+    dic         = {
+        "user": "all",
+        "data": dic_in_dic
+    }
+    monthly_sales_data.append(dic)
+    
     return monthly_sales_data
 
 

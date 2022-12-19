@@ -25,7 +25,7 @@ window.addEventListener("load", function (){
         if($(".teacher_tab_radio").prop("checked")){
             console.log("console")
             console.log($(".teacher_tab_radio").data("num"));
-            // draw_teacher_monthly_graph(0);
+            draw_teacher_stacked_bar_monthly_graph();
             // draw_teacher_yearly_graph(0);
         }
         $(".teacher_tab_radio").on("change", function() {

@@ -29,6 +29,9 @@
     <input type="radio" name="tab_system" id="teacher_tab_radio_{{ forloop.counter }}" class="teacher_tab_radio" data-num="{{ forloop.counter }}"><label for="teacher_tab_radio_{{ forloop.counter }}" class="teacher_tab_label">{{ student.handle_name }}</label>
     {% endfor %}
     
+    <div id="teacher_tab_area_0" class="teacher_tab_area">
+        {% include "sales/teacher_all_monthly_graph.html" %}
+    </div>
     {% for student in students %}
     <div id="teacher_tab_area_{{ forloop.counter }}" class="teacher_tab_area">
         <div class="teacher_monthly_graph_area">
@@ -39,16 +42,6 @@
         </div>
     </div>
     {% endfor %}
-    {% comment %}
-    <div id="teacher_tab_area_0" class="teacher_tab_area">
-        <div class="teacher_monthly_graph_area">
-            {% include "sales/teacher_all_monthly_graph.html" %}
-        </div>
-        <div class="teacher_yearly_graph_area">
-            {% include "sales/teacher_all_yearly_graph.html" with student=student %}
-        </div>
-    </div>
-    {% endcomment %}
 </div>
 {% else %}
 <div class="student_sales_top sales_top" data-is_teacher="False">

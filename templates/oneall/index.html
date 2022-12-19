@@ -14,7 +14,7 @@
 {% block main %}
 <h1>ホーム</h1>
 <section>
-    <h2 class="text-center">新着情報</h2>
+    <h2>新着情報</h2>
     <div class="news_list">
         {% for news in newses %}
         <a class="news_list_content border d-flex flex-wrap align-items-center" href="{% url 'news:detail' news.id %}">

@@ -1,0 +1,38 @@
+<!-- 月間 -->
+<div class="teacher_monthly_graph_area">
+    {% include "sales/calender_header.html" %}
+    <canvas id="teacher_monthly_graph_0"></canvas>
+</div>
+<div class="teacher_yearly_graph_area" id="teacher_monthly_list">
+    <table>
+        <tr>
+            <td style="border-bottom: solid 1px lightgray; border-right: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"></td>
+            <td style="border-bottom: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"><span class="sales_data_lebel ac_label">AC</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"><span class="sales_data_lebel q_label">質問</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"><span class="sales_data_lebel abc_label">ABC</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"><span class="sales_data_lebel interview_label">面談</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding: 0.2rem 0.25rem 0.2rem 0.75rem;"><span class="sales_data_lebel contract_label">契約</span></td>
+        </tr>
+        {% for monthly_sales_data in monthly_sales_datas %}
+        {% if monthly_sales_data.user != 'all' %}
+        <tr>
+            <td style="border-bottom: solid 1px lightgray; border-right: solid 1px lightgray; padding: 0.25rem 0.4rem;"><span class="monthly_sales_data_label_0">{{ monthly_sales_data.user }}</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding-left: 0.75rem;"><span class="monthly_sales_data_value_0">{{ monthly_sales_data.data.acs }}</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding-left: 0.75rem;"><span class="monthly_sales_data_value_0">{{ monthly_sales_data.data.questions }}</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding-left: 0.75rem;"><span class="monthly_sales_data_value_0">{{ monthly_sales_data.data.abcs    }}</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding-left: 0.75rem;"><span class="monthly_sales_data_value_0">{{ monthly_sales_data.data.interviews }}</span></td>
+            <td style="border-bottom: solid 1px lightgray; padding-left: 0.75rem;"><span class="monthly_sales_data_value_0">{{ monthly_sales_data.data.contracts }}</span></td>
+        </tr>
+        {% else %}
+        <tr>
+            <td style="font-weight: bold; border-right: solid 1px lightgray; padding: 0.25rem 0.4rem;"><span>合計</span></td>
+            <td style="font-weight: bold; padding-left: 0.75rem;"><span>{{ monthly_sales_data.data.acs }}</span></td>
+            <td style="font-weight: bold; padding-left: 0.75rem;"><span>{{ monthly_sales_data.data.questions }}</span></td>
+            <td style="font-weight: bold; padding-left: 0.75rem;"><span>{{ monthly_sales_data.data.abcs    }}</span></td>
+            <td style="font-weight: bold; padding-left: 0.75rem;"><span>{{ monthly_sales_data.data.interviews }}</span></td>
+            <td style="font-weight: bold; padding-left: 0.75rem;"><span>{{ monthly_sales_data.data.contracts }}</span></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>

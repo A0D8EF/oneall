@@ -147,9 +147,9 @@ function draw_teacher_yearly_graph(num2){
 }
 
 
-function draw_teacher_stacked_bar_graph(){
-    let label_elems = $(".yearly_sales_data_label");
-    let value_elems = $(".yearly_sales_data_value");
+function draw_teacher_stacked_bar_monthly_graph(){
+    let label_elems = $(".monthly_sales_data_label_0");
+    let value_elems = $(".monthly_sales_data_value_0");
 
     let labels      = [];
     let acs         = [];
@@ -178,7 +178,7 @@ function draw_teacher_stacked_bar_graph(){
         colors.push('rgb('+red[i]+','+blue[i]+','+green[i]+')');
     }
 
-    const ctx       = document.getElementById("yearly_sales_data_graph").getContext("2d");
+    const ctx       = document.getElementById("teacher_monthly_graph_0").getContext("2d");
     const myChart   = new Chart(ctx, {
         type: "bar",
         data: {
