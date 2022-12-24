@@ -38,7 +38,7 @@ class IndexView(LoginRequiredMixin, View):
             cleaned = form.clean()
             query   &= Q(minor_category=cleaned["minor_category"].id)
         
-        textbooks   = Textbook.objects.filter(query).order_by("-dt")
+        textbooks   = Textbook.objects.filter(query).order_by("top_order", "-dt")
         paginator   = Paginator(textbooks, 10)
 
         if "page" in request.GET:

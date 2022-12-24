@@ -61,12 +61,25 @@
             <h2 style="margin-left: 0;">教材一覧</h2>
             <div class="textbook_list">
                 {% for textbook in textbooks %}
-                <div class="textbook_list_content">
+                {% if request.GET.major_category or request.GET.minor_category %}
+                <div class="textbook_list_content border p-2">
+                    <div class="textbook_title">{{ textbook.title }}</div>
                     {% if textbook.file_content %}
                     <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
                     {% endif %}
-                    <div class="textbook_title">{{ textbook.title }}</div>
+                    <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
                 </div>
+                {% else %}
+                    {% if textbook.is_top %}
+                    <div class="textbook_list_content border p-2">
+                        <div class="textbook_title">{{ textbook.title }}</div>
+                        {% if textbook.file_content %}
+                        <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+                        {% endif %}
+                        <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
+                    </div>
+                    {% endif %}
+                {% endif %}
                 {% endfor %}
             </div>
 

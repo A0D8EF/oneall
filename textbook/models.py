@@ -36,6 +36,10 @@ class Textbook(models.Model):
     is_youtube      = models.BooleanField(verbose_name="Youtubeか", default=False)
     youtube_url     = models.URLField(verbose_name="YoutubeURL", null=True, blank=True)
 
+    is_top          = models.BooleanField(verbose_name="トップ表示", default=False)
+    top_order       = models.IntegerField(verbose_name="トップ表示の順番", null=True, blank=True)
+    explanation     = models.CharField(verbose_name="説明文", max_length=5000, null=True, blank=True)
+
     major_category  = models.ForeignKey(MajorCategory, verbose_name="大カテゴリ", on_delete=models.PROTECT)
     minor_category  = models.ForeignKey(MinorCategory, verbose_name="小カテゴリ", on_delete=models.PROTECT)
 

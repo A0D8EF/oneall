@@ -24,7 +24,7 @@
                     {% endif %}
                 </div>
                 <div class="member_name" style="margin: 0.5rem 0;">{{ teacher.handle_name }}</div>
-                <div class="member_introduction">{{ teacher.introduction|linebreaksbr }}</div>
+                <div class="member_introduction">{{ teacher.introduction|default:""|linebreaksbr }}</div>
             </div>
         </div>
         {% endfor %}

@@ -19,11 +19,21 @@ function change_minor_category(id){
 
 function show_youtube_url(flag) {
     if (flag) {
-        $(".youtube_url").show()
+        $(".youtube_url").show();
+        $(".movie_file").css("display", "none");
     }else{
-        $(".youtube_url").css("display", "none")
+        $(".youtube_url").css("display", "none");
+        $(".movie_file").show();
     }
 }
+function show_top_order(flag) {
+    if (flag) {
+        $(".top_order").show();
+    }else{
+        $(".top_order").css("display", "none");
+    }
+}
+
 
 function add_major_news_category(){
 

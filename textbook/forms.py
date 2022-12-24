@@ -7,7 +7,7 @@ class TextbookForm(forms.ModelForm):
 
     class Meta:
         model   = Textbook
-        fields  = ["user", "title", "thumbnail", "file_content", "major_category", "minor_category", "is_youtube", "youtube_url"]
+        fields  = ["user", "title", "thumbnail", "file_content", "major_category", "minor_category", "is_youtube", "youtube_url", "is_top", "top_order", "explanation"]
     
     def clean(self):
         data    = self.cleaned_data
@@ -24,13 +24,13 @@ class MajorCategoryForm(forms.ModelForm):
 
     class Meta:
         model   = MajorCategory
-        fields  = ["name"]
+        fields  = ["name", "order"]
 
 class MinorCategoryForm(forms.ModelForm):
 
     class Meta:
         model   = MinorCategory
-        fields  = ["parent","name"]
+        fields  = ["parent","name", "order"]
 
 
 class MajorCategorySearchForm(forms.ModelForm):

@@ -36,12 +36,14 @@
             <div class="play-btn_center"></div>
         </a> -->
         {% for textbook in textbooks %}
+        {% if textbook.is_top %}
         <div class="textbook_list_content">
             {% if textbook.file_content %}
             <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
             {% endif %}
             <div class="textbook_title">{{ textbook.title }}</div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </section>

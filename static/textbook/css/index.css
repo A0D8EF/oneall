@@ -19,7 +19,7 @@
     .textbook_title {
         text-align: center;
         font-weight: bold;
-        margin-top: 0.2rem;
+        margin: 0.2rem auto;
     }
     .textbook_list_content > video {
         display: block;
