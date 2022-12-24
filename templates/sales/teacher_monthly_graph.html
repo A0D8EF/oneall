@@ -1,6 +1,6 @@
 <!-- 月間 -->
 {% include "sales/calender_header.html" %}
-<canvas id="teacher_monthly_graph_{{ num }}"></canvas>
+<div style="height: 45vh"><canvas id="teacher_monthly_graph_{{ num }}" style="height: 45vh;"></canvas></div>
 <div class="monthly_sales_data_list" style="display: none;">
     <table>
         {% for monthly_sales_data in monthly_sales_datas %}

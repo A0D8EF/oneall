@@ -36,6 +36,8 @@ function draw_teacher_monthly_graph(num1){
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -125,6 +127,8 @@ function draw_teacher_yearly_graph(num2){
             ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -217,6 +221,8 @@ function draw_teacher_stacked_bar_monthly_graph(){
             ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,

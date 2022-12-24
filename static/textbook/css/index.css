@@ -31,7 +31,9 @@
 
 .major_category_list, .minor_category_list { list-style: none; }
 .major_category_list { padding: 0; }
-.minor_category_list { padding: 0 0 0.5rem 1rem; }
+.minor_category_list { padding: 0 0 0.5rem 1rem; display: none; }
 li { margin: 0.3rem 0.5rem; }
 .category_list_name { color: black; }
 .category_list_name:hover { color: var(--main-color); }
+
+.minor_category_list_chk:checked + .minor_category_list { display: block; }

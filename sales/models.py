@@ -11,6 +11,7 @@ class AC(models.Model):
     c_name  = models.CharField(verbose_name="Cさんの名前", max_length=10, null=True, blank=True)
     place   = models.CharField(verbose_name="AC場所", max_length=200, null=True, blank=True)
 
+    c_is_ac_active = models.BooleanField(verbose_name="ACステータス", default=True)
 
     def __str__(self):
         return self.c_name
@@ -26,6 +27,8 @@ class Question(models.Model):
     q_date  = models.DateField(verbose_name="質問日")
     ac      = models.ForeignKey(AC, verbose_name="対応するAC", on_delete=models.CASCADE)
 
+    c_is_question_active    = models.BooleanField(verbose_name="質問ステータス", default=True)
+
     def __str__(self):
         return self.ac.c_name
 
@@ -37,6 +40,8 @@ class ABC(models.Model):
     abc_date    = models.DateTimeField(verbose_name="ABC日時")
     question    = models.ForeignKey(Question, verbose_name="対応する質問", on_delete=models.CASCADE)
 
+    c_is_abc_active = models.BooleanField(verbose_name="ABCステータス", default=True)
+
     def __str__(self):
         return self.question.ac.c_name
 
@@ -47,6 +52,8 @@ class Interview(models.Model):
 
     interview_date  = models.DateTimeField(verbose_name="面談日時")
     abc             = models.ForeignKey(ABC, verbose_name="対応するABC", on_delete=models.CASCADE)
+
+    c_is_interview_active    = models.BooleanField(verbose_name="面談ステータス", default=True)
 
     def __str__(self):
         return self.abc.question.ac.c_name

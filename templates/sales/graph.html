@@ -5,7 +5,7 @@
 <!-- 月間 -->
 <div id="tab_area_1" class="tab_area">
     {% include "sales/calender_header.html" %}
-    <canvas id="monthly_sales_data_graph"></canvas>
+    <div style="height: 45vh"><canvas id="monthly_sales_data_graph" style="height: 45vh;"></canvas></div>
     <div class="monthly_sales_data_list" style="display:none;">
         <table>
             <tr>
@@ -35,8 +35,7 @@
 <!-- 年間 -->
 <div id="tab_area_2" class="tab_area">
     {% include "sales/calender_header.html" %}
-    <div id="yearly_sales_data_graph_title">{{ yearly_sales_datas.0.year }}年{{ yearly_sales_datas.0.month }}月~{{ selected_date.year }}年{{ selected_date.month }}月の営業データ</div>
-    <canvas id="yearly_sales_data_graph"></canvas>
+    <div style="height: 45vh"><canvas id="yearly_sales_data_graph" style="height: 45vh;"></canvas></div>
     <div class="yearly_sales_data_list" style="display:none;">
         <table>
             {% for yearly_sales_data in yearly_sales_datas %}

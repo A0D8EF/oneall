@@ -23,11 +23,4 @@
         margin-top: 0;
         padding: 1rem 0.5rem;
     }
-    #teacher_tab_radio_0:checked ~ #teacher_tab_area_0 { display: block; }
-    #teacher_tab_radio_1:checked ~ #teacher_tab_area_1 { display: block; }
-    #teacher_tab_radio_2:checked ~ #teacher_tab_area_2 { display: block; }
-    #teacher_tab_radio_3:checked ~ #teacher_tab_area_3 { display: block; }
-    #teacher_tab_radio_4:checked ~ #teacher_tab_area_4 { display: block; }
-    #teacher_tab_radio_5:checked ~ #teacher_tab_area_5 { display: block; }
-    #teacher_tab_radio_6:checked ~ #teacher_tab_area_6 { display: block; }
 }

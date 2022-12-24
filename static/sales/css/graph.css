@@ -1,17 +1,16 @@
 /* tab system */
 .tab_radio { display: none; }
-
-.tab_area {
-    display: none;
-    height: 60vh;
-    overflow-y: auto;
-    border: solid 0.1rem var(--main-color);
-    border-radius: 0 0.4rem 0.4rem 0.4rem;
-    margin-top: 0;
-    padding: 1.5rem;
+@media screen and (min-width: 1000px) {
+    .tab_area {
+        display: none;
+        height: 60vh;
+        overflow-y: auto;
+        border: solid 0.1rem var(--main-color);
+        border-radius: 0 0.4rem 0.4rem 0.4rem;
+        margin-top: 0;
+        padding: 1.5rem;
+    }
 }
-@media screen and (min-width: 1000px) { .tab_area { height: 60vh; } }
-/* @media screen and (max-width: 999px) { .tab_area { max-height: 60vh; } } */
 .tab_label {
     display: inline-block;
     border-top: solid 0.1rem var(--inactive-color);

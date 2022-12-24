@@ -13,6 +13,7 @@ from users.models import CustomUser
 
 from . import calender, set_selected_date
 from . import term_sales_data, teacher_sales_data
+from . import change_status
 
 import datetime
 
@@ -58,6 +59,14 @@ class IndexView(LoginRequiredMixin,View):
             
             context["monthly_sales_datas"]  = term_sales_data.monthly(request, selected_date)
             context["yearly_sales_datas"]   = term_sales_data.yearly(request, selected_date)
+
+            change_status.change_inactive(request, today)
+            # acs     = AC.objects.filter(user=request.user.id)
+            # for ac in acs:
+            #     if ac.c_is_ac_active and (ac.ac_date + tz.timedelta(days=21) < today):
+            #         print(ac.ac_date)
+            #         ac.c_is_ac_active = False
+            #         ac.save()
         
 
         return render(request, "sales/index.html", context)
@@ -79,24 +88,40 @@ class IndexView(LoginRequiredMixin,View):
                 print("バリデーションNG")
                 print(form.errors)
                 return redirect("sales:index")
+            
+            ac          = AC.objects.filter(id=request.POST["ac"]).first()
+            ac.c_is_ac_active  = False
+            ac.save()
         elif copied["sales_form_chk"] == "abc":
             form        = ABCForm(copied)
             if not form.is_valid():
                 print("バリデーションNG")
                 print(form.errors)
                 return redirect("sales:index")
+            
+            q                       = Question.objects.filter(id=request.POST["question"]).first()
+            q.c_is_question_active  = False
+            q.save()
         elif copied["sales_form_chk"] == "interview":
             form        = InterviewForm(copied)
             if not form.is_valid():
                 print("バリデーションNG")
                 print(form.errors)
                 return redirect("sales:index")
+            
+            abc                 = ABC.objects.filter(id=request.POST["abc"]).first()
+            abc.c_is_abc_active = False
+            abc.save()
         else:
             form        = ContractForm(copied)
             if not form.is_valid():
                 print("バリデーションNG")
                 print(form.errors)
                 return redirect("sales:index")
+            
+            interview                       = Interview.objects.filter(id=request.POST["interview"]).first()
+            interview.c_is_interview_active = False
+            interview.save()
         
         form.save()
 

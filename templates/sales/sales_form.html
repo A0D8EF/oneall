@@ -39,7 +39,9 @@
                 <select name="ac" class="form-control" style="height:2.3rem;" required>
                     <option value="" disabled selected>Cさんを選択してください</option>
                     {% for ac in acs %}
+                    {% if ac.c_is_ac_active %}
                     <option value="{{ ac.id }}">{{ ac.c_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <input name="q_date" class="input_date form-control" required>
@@ -53,7 +55,9 @@
                 <select name="question" class="form-control" style="height:2.3rem;" required>
                     <option value="" disabled selected>Cさんを選択してください</option>
                     {% for question in questions %}
+                    {% if question.c_is_question_active %}
                     <option value="{{ question.id }}">{{ question.ac.c_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <input name="abc_date" class="input_date form-control" required>
@@ -67,7 +71,9 @@
                 <select name="abc" class="form-control" style="height:2.3rem;" required>
                     <option value="" disabled selected>Cさんを選択してください</option>
                     {% for abc in abcs %}
+                    {% if abc.c_is_abc_active %}
                     <option value="{{ abc.id }}">{{ abc.question.ac.c_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <input name="interview_date" class="input_date form-control" required>
@@ -81,7 +87,9 @@
                 <select name="interview" class="form-control" style="height:2.3rem;" required>
                     <option value="" disabled selected>Cさんを選択してください</option>
                     {% for interview in interviews %}
+                    {% if interview.c_is_interview_active %}
                     <option value="{{ interview.id }}">{{ interview.abc.question.ac.c_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <input name="contract_date" class="input_date form-control" required>

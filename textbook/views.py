@@ -46,8 +46,8 @@ class IndexView(LoginRequiredMixin, View):
         else:
             context["textbooks"]    = paginator.get_page(1)
         
-        context["major_categories"] = MajorCategory.objects.all()
-        context["minor_categories"] = MinorCategory.objects.all()
+        context["major_categories"] = MajorCategory.objects.all().order_by("order")
+        context["minor_categories"] = MinorCategory.objects.all().order_by("order")
 
         return render(request, "textbook/index.html", context)
 

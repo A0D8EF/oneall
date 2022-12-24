@@ -26,16 +26,16 @@
             <span style="padding: 0 0.25rem">></span>
             {% for major_category in major_categories %}
             {% if request.GET.major_category == major_category.str_id %}
-            <a href="?{% url_replace request 'major_category' major_category.id %}" {% if request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>{{ major_category.name }}</a>
+            <a href="?{% url_replace request 'major_category' major_category.id %}" {% if request.GET.minor_category %}class="to_upper_layer"{% else %}class="bottom_layer"{% endif %}>{{ major_category.order }}. {{ major_category.name }}</a>
             {% endif %}
             {% endfor %}
         {% elif request.GET.minor_category %}
             <span style="padding: 0 0.25rem">></span>
             {% for minor_category in minor_categories %}
             {% if request.GET.minor_category == minor_category.str_id %}
-            <a href="?{% url_replace request 'major_category' minor_category.parent.id %}" class="to_upper_layer">{{ minor_category.parent.name }}</a>
+            <a href="?{% url_replace request 'major_category' minor_category.parent.id %}" class="to_upper_layer">{{ minor_category.parent.order }}. {{ minor_category.parent.name }}</a>
             <span style="padding: 0 0.25rem">></span>
-            <a href="?{% url_replace request 'minor_category' minor_category.id %}" class="bottom_layer">{{ minor_category.name }}</a>
+            <a href="?{% url_replace request 'minor_category' minor_category.id %}" class="bottom_layer">{{ minor_category.parent.order }}-{{ minor_category.order }}. {{ minor_category.name }}</a>
             {% endif %}
             {% endfor %}
         {% endif %}
@@ -44,11 +44,12 @@
         <div class="category_list_area">
             <ul class="major_category_list">
                 {% for major_category in major_categories %}
-                <li><a class="category_list_name" href="?{% url_replace request 'major_category' major_category.id %}">{{ major_category.name }}</a></li>
+                <li><label for="minor_category_list_chk_{{ major_category.id }}" style="margin-right: 0.5rem;">▼</label><a class="category_list_name" href="?{% url_replace request 'major_category' major_category.id %}">{{ major_category.order }}. {{ major_category.name }}</a></li>
+                <input type="checkbox" id="minor_category_list_chk_{{ major_category.id }}" class="minor_category_list_chk" style="display: none;">
                 <ul class="minor_category_list">
                     {% for minor_category in minor_categories %}
                     {% if minor_category.parent.id == major_category.id %}
-                        <li><a class="category_list_name" href="?{% url_replace request 'minor_category' minor_category.id %}">{{ minor_category.name }}</a></li>
+                        <li><a class="category_list_name" href="?{% url_replace request 'minor_category' minor_category.id %}">{{ minor_category.parent.order }}-{{ minor_category.order }}. {{ minor_category.name }}</a></li>
                     {% endif %}
                     {% endfor %}
                     </ul>

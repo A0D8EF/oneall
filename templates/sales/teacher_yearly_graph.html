@@ -1,7 +1,7 @@
 <!-- 年間 -->
 {% include "sales/calender_header.html" %}
 <!-- <div style="text-align: center;">年間営業データ</div> -->
-<canvas id="teacher_yearly_graph_{{ num }}"></canvas>
+<div style="height: 45vh"><canvas id="teacher_yearly_graph_{{ num }}" style="height: 45vh;"></canvas></div>
 <div class="yearly_sales_data_list" style="display: none;">
     <table>
         {% for yearly_sales_data in yearly_sales_datas %}

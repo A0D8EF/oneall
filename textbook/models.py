@@ -6,6 +6,8 @@ from django.utils import timezone
 class MajorCategory(models.Model):
     name    = models.CharField(verbose_name="大カテゴリ名", max_length=20, unique=True)
 
+    order   = models.IntegerField(verbose_name="順番", unique=True)
+
     def __str__(self):
         return self.name
 
@@ -14,6 +16,7 @@ class MajorCategory(models.Model):
 
 class MinorCategory(models.Model):
     name    = models.CharField(verbose_name="小カテゴリ名", max_length=20)
+    order   = models.IntegerField(verbose_name="順番")
 
     parent  = models.ForeignKey(MajorCategory, verbose_name="大カテゴリ", on_delete=models.PROTECT)
 

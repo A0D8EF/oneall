@@ -1,7 +1,6 @@
 /* tab system */
 .teacher_tab_radio { display: none; }
 
-/* @media screen and (max-width: 999px) { .tab_area { max-height: 60vh; } } */
 .teacher_tab_label {
     display: inline-block;
     border-top: solid 0.1rem var(--inactive-color);

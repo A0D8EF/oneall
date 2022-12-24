@@ -1,0 +1,12 @@
+@media screen and (max-width: 999px) {
+
+    .tab_area {
+        display: none;
+        height: 60vh;
+        overflow-y: auto;
+        border: solid 0.1rem var(--main-color);
+        border-radius: 0 0.4rem 0.4rem 0.4rem;
+        margin-top: 0;
+        padding: 1rem 0.5rem;
+    }
+}

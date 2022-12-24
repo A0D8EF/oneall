@@ -17,6 +17,10 @@
     --border-color: rgb(221, 221, 221);
 }
 
+body {
+    font-family: '游明朝 Medium', serif;
+}
+
 .nav_link { margin-bottom: 1rem; }
 .to_upper_layer { color: black; }
 .to_upper_layer:hover { color: var(--main-color); }

@@ -32,6 +32,8 @@ function draw_bar_graph(){
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -119,6 +121,8 @@ function draw_stacked_bar_graph(){
             ]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,

@@ -4,6 +4,7 @@
 @media screen and (min-width: 1000px) {
     .student_sales_top {
         display: flex;
+        align-items: center;
     }
     .calender_area {
         width: 50%;
