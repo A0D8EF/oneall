@@ -9,6 +9,8 @@ from .models import MajorCategory, MinorCategory, Textbook
 from .forms import TextbookForm, MajorCategoryForm, MinorCategoryForm
 from .forms import MajorCategorySearchForm, MinorCategorySearchForm
 
+from . import scraping
+
 from django.contrib import messages
 
 from django.http.response import JsonResponse
@@ -54,6 +56,11 @@ class IndexView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         copied              = request.POST.copy()
         copied["user"]      = request.user.id
+
+        print(copied)
+
+        if "is_youtube" in copied:
+            copied["thumbnail_url"] = scraping.youtube_thumbnail(copied)
 
         form                = TextbookForm(copied, request.FILES)
         if not form.is_valid():

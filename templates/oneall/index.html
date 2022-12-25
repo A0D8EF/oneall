@@ -28,21 +28,34 @@
 <section>
     <h2>教材</h2>
     <div class="textbook_list">
-        <!-- <a class="textbook_list_content" href="https://www.youtube.com/watch?v=zacJ9SdErqc" target="_blank" rel="noopener noreferrer">
-            <img src="https://i.ytimg.com/vi/zacJ9SdErqc/maxresdefault.jpg" alt="">
-            <label aria-label="再生">
-                <i class="fa-brands fa-youtube"></i>
-            </label>
-            <div class="play-btn_center"></div>
-        </a> -->
         {% for textbook in textbooks %}
         {% if textbook.is_top %}
-        <div class="textbook_list_content">
-            {% if textbook.file_content %}
-            <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
-            {% endif %}
-            <div class="textbook_title">{{ textbook.title }}</div>
-        </div>
+            <div class="textbook_list_content border p-2">
+                <div class="textbook_title">{{ textbook.title }}</div>
+                <div class="textbook_thumbnail">
+                    {% if textbook.is_youtube %}
+                    <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                        {% if textbook.thumbnail %}
+                        <img src="{{ textbook.thumbnail.url }}" alt="">
+                        {% elif textbook.thumbnail_url %}
+                        <img src="{{ textbook.thumbnail_url }}" alt="">
+                        {% else %}
+                        <img src="{% static 'images/noimage.png' %}" alt="">
+                        {% endif %}
+                    </a>
+                    <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                        <label aria-label="再生">
+                            <i class="fa-brands fa-youtube"></i>
+                        </label>
+                    </a>
+                    <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                        <div class="play-btn_center"></div>
+                    </a>
+                    {% else %}
+                    <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+                    {% endif %}
+                </div>
+            </div>
         {% endif %}
         {% endfor %}
     </div>

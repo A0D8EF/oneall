@@ -32,6 +32,7 @@ class Textbook(models.Model):
 
     title           = models.CharField(verbose_name="タイトル", max_length=100)
     thumbnail       = models.ImageField(verbose_name="サムネイル画像", upload_to="textbook/thubnail/", null=True, blank=True)
+    thumbnail_url   = models.URLField(verbose_name="Youtubeのサムネイル", null=True, blank=True)
     file_content    = models.FileField(verbose_name="ファイル", upload_to="textbook/movie/", null=True, blank=True)
     is_youtube      = models.BooleanField(verbose_name="Youtubeか", default=False)
     youtube_url     = models.URLField(verbose_name="YoutubeURL", null=True, blank=True)

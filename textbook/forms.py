@@ -7,7 +7,7 @@ class TextbookForm(forms.ModelForm):
 
     class Meta:
         model   = Textbook
-        fields  = ["user", "title", "thumbnail", "file_content", "major_category", "minor_category", "is_youtube", "youtube_url", "is_top", "top_order", "explanation"]
+        fields  = ["user", "title", "thumbnail", "thumbnail_url", "file_content", "major_category", "minor_category", "is_youtube", "youtube_url", "is_top", "top_order", "explanation"]
     
     def clean(self):
         data    = self.cleaned_data

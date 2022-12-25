@@ -44,8 +44,8 @@
         <div class="category_list_area">
             <ul class="major_category_list">
                 {% for major_category in major_categories %}
-                <li><label for="minor_category_list_chk_{{ major_category.id }}" style="margin-right: 0.5rem;">▼</label><a class="category_list_name" href="?{% url_replace request 'major_category' major_category.id %}">{{ major_category.order }}. {{ major_category.name }}</a></li>
-                <input type="checkbox" id="minor_category_list_chk_{{ major_category.id }}" class="minor_category_list_chk" style="display: none;">
+                <li><label for="minor_category_list_chk_{{ major_category.id }}" class="minor_category_list_btn" id="minor_category_list_btn_{{ major_category.id }}">▼</label><a class="category_list_name" href="?{% url_replace request 'major_category' major_category.id %}">{{ major_category.order }}. {{ major_category.name }}</a></li>
+                <input type="checkbox" id="minor_category_list_chk_{{ major_category.id }}" class="minor_category_list_chk" style="display: none;" value="{{ major_category.id }}">
                 <ul class="minor_category_list">
                     {% for minor_category in minor_categories %}
                     {% if minor_category.parent.id == major_category.id %}
@@ -64,18 +64,58 @@
                 {% if request.GET.major_category or request.GET.minor_category %}
                 <div class="textbook_list_content border p-2">
                     <div class="textbook_title">{{ textbook.title }}</div>
-                    {% if textbook.file_content %}
-                    <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
-                    {% endif %}
+                    <div class="textbook_thumbnail">
+                        {% if textbook.is_youtube %}
+                        <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                            {% if textbook.thumbnail %}
+                            <img src="{{ textbook.thumbnail.url }}" alt="">
+                            {% elif textbook.thumbnail_url %}
+                            <img src="{{ textbook.thumbnail_url }}" alt="">
+                            {% else %}
+                            <img src="{% static 'images/noimage.png' %}" alt="">
+                            {% endif %}
+                        </a>
+                        <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                            <label aria-label="再生">
+                                <i class="fa-brands fa-youtube"></i>
+                            </label>
+                        </a>
+                        <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                            <div class="play-btn_center"></div>
+                        </a>
+                        {% else %}
+                        <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+                        {% endif %}
+                    </div>
                     <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
                 </div>
                 {% else %}
                     {% if textbook.is_top %}
                     <div class="textbook_list_content border p-2">
                         <div class="textbook_title">{{ textbook.title }}</div>
-                        {% if textbook.file_content %}
-                        <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
-                        {% endif %}
+                        <div class="textbook_thumbnail">
+                            {% if textbook.is_youtube %}
+                            <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                                {% if textbook.thumbnail %}
+                                <img src="{{ textbook.thumbnail.url }}" alt="">
+                                {% elif textbook.thumbnail_url %}
+                                <img src="{{ textbook.thumbnail_url }}" alt="">
+                                {% else %}
+                                <img src="{% static 'images/noimage.png' %}" alt="">
+                                {% endif %}
+                            </a>
+                            <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                                <label aria-label="再生">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </label>
+                            </a>
+                            <a href="{{ textbook.youtube_url }}" target="_blank" rel="noopener noreferrer">
+                                <div class="play-btn_center"></div>
+                            </a>
+                            {% else %}
+                            <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
+                            {% endif %}
+                        </div>
                         <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
                     </div>
                     {% endif %}

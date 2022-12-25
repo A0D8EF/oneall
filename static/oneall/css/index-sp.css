@@ -1,14 +1,11 @@
 @media screen and (max-width: 767px) {
     .textbook_title { width: 100% }
+    
     .textbook_list_content {
-        cursor: pointer;
+        position: relative;
         width: 90%;
-        margin: 0 auto;
+        min-width: 18rem;
+        margin: 1rem auto;
     }
-
-    .textbook_list_content > video {
-        width: 100%;
-    }
-    .textbook_title { text-align: center; }
 }
 

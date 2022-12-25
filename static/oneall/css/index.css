@@ -52,13 +52,31 @@
         cursor: pointer;
     }
 
-    /*
-.textbook_list_content > img {
-    width: 100%;
-    z-index: 10;
+    .textbook_list_content {
+        position: relative;
+        width: 30%;
+        min-width: 18rem;
+        margin: 1rem 0.75rem;
+    }
 }
-
-.textbook_list_content > label {
+.textbook_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.textbook_title {
+    text-align: center;
+    font-weight: bold;
+    margin: 0.2rem auto;
+}
+.textbook_thumbnail {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    z-index: 10;
+    margin: 0.2rem auto;
+}
+.textbook_thumbnail > a > img, .textbook_thumbnail > video { width: 100%; }
+.textbook_thumbnail > a > label {
     display: block;
     color: red;
     font-size: 3rem;
@@ -86,8 +104,4 @@
 
     transform: translate(-50%, -50%);
 }
-*/
 
-    .textbook_list_content > video { width: 100%; }
-    .textbook_title { text-align: center; }
-}

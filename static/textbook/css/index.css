@@ -2,38 +2,70 @@
 #nav-menu-textbook > a { color: var(--main-color); }
 
 @media screen and (min-width: 550px) {
-    .category_list_area { min-width: 200px; }
+    .category_list_area { min-width: 240px; }
 
     .textbook_list_area { margin-left: 2rem; margin-top: 0.5rem; flex-grow: 1; }
-    .textbook_list {
-        display: flex;
-        flex-wrap: wrap;
-        /* justify-content: space-around; */
-    }
+    
     .textbook_list_content {
         position: relative;
-        width: 20rem;
-        max-height: 15rem;
-        margin: 1rem;
+        width: 45%;
+        min-width: 18rem;
+        margin: 1rem 0.75rem;
     }
-    .textbook_title {
-        text-align: center;
-        font-weight: bold;
-        margin: 0.2rem auto;
-    }
-    .textbook_list_content > video {
-        display: block;
-        width: 100%;
-        cursor: pointer;
-        z-index: 10;
-    }
+}
+.textbook_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.textbook_title {
+    text-align: center;
+    font-weight: bold;
+    margin: 0.2rem auto;
+}
+.textbook_thumbnail {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    z-index: 10;
+    margin: 0.2rem auto;
+}
+.textbook_thumbnail > a > img, .textbook_thumbnail > video { width: 100%; }
+.textbook_thumbnail > a > label {
+    display: block;
+    color: red;
+    font-size: 3rem;
+    background-color: rgba(255,255,255,0);
+    border: none;
+    z-index: 20;
+    margin: 0;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    cursor: pointer;
+}
+.play-btn_center {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: white;
+    z-index: 15;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
 }
 
 .major_category_list, .minor_category_list { list-style: none; }
 .major_category_list { padding: 0; }
 .minor_category_list { padding: 0 0 0.5rem 1rem; display: none; }
 li { margin: 0.3rem 0.5rem; }
-.category_list_name { color: black; }
+.category_list_name { color: black; margin-left: 0.5rem; }
 .category_list_name:hover { color: var(--main-color); }
 
 .minor_category_list_chk:checked + .minor_category_list { display: block; }
+.minor_category_list_btn { cursor: pointer; }
+.minor_category_list_btn:hover { color: var(--main-color); }

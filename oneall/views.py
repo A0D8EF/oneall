@@ -9,7 +9,7 @@ class IndexView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         context                 = {}
         context["newses"]       = News.objects.all().order_by("-dt")[:5]
-        context["textbooks"]    = Textbook.objects.all().order_by("-dt")[:6]
+        context["textbooks"]    = Textbook.objects.all().order_by("top_order", "-dt")
 
         return render(request, "oneall/index.html", context)
 
