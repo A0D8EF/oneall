@@ -33,40 +33,38 @@ LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 ################# django-allauthでのメール認証設定ここから ###################
+from . import local_settings
 
-# #djangoallauthでメールでユーザー認証する際に必要になる認証バックエンド
-# AUTHENTICATION_BACKENDS = [
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# ]
+#djangoallauthでメールでユーザー認証する際に必要になる認証バックエンド
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
-# #ログイン時の認証方法はemailとパスワードとする
-# ACCOUNT_AUTHENTICATION_METHOD   = "email"
+#ログイン時の認証方法はemailとパスワードとする
+ACCOUNT_AUTHENTICATION_METHOD   = "email"
 
-# #ログイン時にユーザー名(ユーザーID)は使用しない
-# ACCOUNT_USERNAME_REQUIRED       = True
+#ログイン時にユーザー名(ユーザーID)は使用しない
+ACCOUNT_USERNAME_REQUIRED       = True
 
-# #ユーザー登録時に入力したメールアドレスに、確認メールを送信する事を必須(mandatory)とする
-# ACCOUNT_EMAIL_VARIFICATION  = "mandatory"
+#ユーザー登録時に入力したメールアドレスに、確認メールを送信する事を必須(mandatory)とする
+ACCOUNT_EMAIL_VARIFICATION  = "mandatory"
 
-# #ユーザー登録画面でメールアドレス入力を要求する(True)
-# ACCOUNT_EMAIL_REQUIRED      = True
+#ユーザー登録画面でメールアドレス入力を要求する(True)
+ACCOUNT_EMAIL_REQUIRED      = True
 
 
-# #DEBUGがTrueのとき、メールの内容は全て端末に表示させる(実際にメールを送信したい時はここをコメントアウトする)
+#DEBUGがTrueのとき、メールの内容は全て端末に表示させる(実際にメールを送信したい時はここをコメントアウトする)
 # if DEBUG:
 #     EMAIL_BACKEND   = "django.core.mail.backends.console.EmailBackend"
 # else:
-#     #TODO:SendgridのAPIキーと送信元メールアドレスを入れていない時、以下が実行されると必ずエラーになる点に注意。
-#     EMAIL_BACKEND       = "sendgrid_backend.SendgridBackend"
-#     DEFAULT_FROM_EMAIL  = "ここにデフォルトの送信元メールアドレスを指定"
+    #TODO:SendgridのAPIキーと送信元メールアドレスを入れていない時、以下が実行されると必ずエラーになる点に注意。
+EMAIL_BACKEND       = "sendgrid_backend.SendgridBackend"
+DEFAULT_FROM_EMAIL  = local_settings.DEFAULT_FROM_EMAIL
+SENDGRID_API_KEY    = local_settings.SENDGRID_API_KEY
 
-#     #【重要】APIキーの入力後、GitHubへのプッシュは厳禁。可能であれば.gitignoreに指定した別ファイルから読み込む
-#     SENDGRID_API_KEY    = "ここにsendgridのAPIkeyを記述する"
-
-#     #Sendgrid利用時はサンドボックスモードを無効化しておく。
-#     SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-EMAIL_BACKEND   = "django.core.mail.backends.console.EmailBackend"
+#Sendgrid利用時はサンドボックスモードを無効化しておく。
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 ################# django-allauthでのメール認証設定ここまで ###################
 
