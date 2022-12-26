@@ -13,5 +13,19 @@
     #teacher_tab_radio_4:checked ~ #teacher_tab_area_4 { display: block; }
     #teacher_tab_radio_5:checked ~ #teacher_tab_area_5 { display: block; }
     #teacher_tab_radio_6:checked ~ #teacher_tab_area_6 { display: block; }
+    #teacher_tab_radio_7:checked ~ #teacher_tab_area_7 { display: block; }
+    #teacher_tab_radio_8:checked ~ #teacher_tab_area_8 { display: block; }
+    #teacher_tab_radio_9:checked ~ #teacher_tab_area_9 { display: block; }
+    #teacher_tab_radio_10:checked ~ #teacher_tab_area_10 { display: block; }
+    #teacher_tab_radio_11:checked ~ #teacher_tab_area_11 { display: block; }
+    #teacher_tab_radio_12:checked ~ #teacher_tab_area_12 { display: block; }
+    #teacher_tab_radio_13:checked ~ #teacher_tab_area_13 { display: block; }
+    #teacher_tab_radio_14:checked ~ #teacher_tab_area_14 { display: block; }
+    #teacher_tab_radio_15:checked ~ #teacher_tab_area_15 { display: block; }
+    #teacher_tab_radio_16:checked ~ #teacher_tab_area_16 { display: block; }
+    #teacher_tab_radio_17:checked ~ #teacher_tab_area_17 { display: block; }
+    #teacher_tab_radio_18:checked ~ #teacher_tab_area_18 { display: block; }
+    #teacher_tab_radio_19:checked ~ #teacher_tab_area_19 { display: block; }
+    #teacher_tab_radio_20:checked ~ #teacher_tab_area_20 { display: block; }
 
 }

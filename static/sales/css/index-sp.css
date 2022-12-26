@@ -12,7 +12,7 @@
         margin: 2rem auto 3rem auto;
     }
 
-    .teacher_monthly_graph_area, .teacher_yearly_graph_area {
+    .teacher_monthly_graph_area, .teacher_yearly_graph_area, .teacher_all_monthly_graph_area, .teacher_all_monthly_table {
         width: 95%;
         padding: 0 1rem 2rem 1rem;
     }

@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'oneall/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'allauth/css/style.css' %}">
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="body_area">
+        {% block body %}
+
+        {% comment %}
+        <div>
+            <strong>Menu:</strong>
+            <ul>
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'account_email' %}">メールアドレス変更</a></li>
+              <li><a href="{% url 'account_logout' %}">ログアウト</a></li>
+              {% else %}
+              <li><a href="{% url 'account_signup' %}">ユーザー登録</a></li>
+              {% endif %}
+            </ul>
+        </div>
+        {% endcomment %}
+        {% block content %}
+        {% endblock %}
+        {% endblock %}
+        {% block extra_body %}
+        {% endblock %}
+  </div>
+  </body>
+</html>

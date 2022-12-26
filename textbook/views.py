@@ -22,14 +22,6 @@ class IndexView(LoginRequiredMixin, View):
         context = {}
         query   = Q()
         
-        if "search" in request.GET:
-            search      = request.GET["search"]
-            raw_words   = search.replace("　"," ").split(" ")
-            words       = [ w for w in raw_words if w != ""]
-
-            for w in words:
-                query &= Q(title__contains=w)
-        
         form    = MajorCategorySearchForm(request.GET)        
         if form.is_valid():
             cleaned = form.clean()
@@ -40,14 +32,8 @@ class IndexView(LoginRequiredMixin, View):
             cleaned = form.clean()
             query   &= Q(minor_category=cleaned["minor_category"].id)
         
-        textbooks   = Textbook.objects.filter(query).order_by("top_order", "-dt")
-        paginator   = Paginator(textbooks, 10)
-
-        if "page" in request.GET:
-            context["textbooks"]    = paginator.get_page(request.GET["page"])
-        else:
-            context["textbooks"]    = paginator.get_page(1)
-        
+        context["textbooks"]    = Textbook.objects.filter(query).order_by("top_order", "-dt")
+                
         context["major_categories"] = MajorCategory.objects.all().order_by("order")
         context["minor_categories"] = MinorCategory.objects.all().order_by("order")
 
