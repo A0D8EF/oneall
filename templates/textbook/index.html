@@ -87,7 +87,7 @@
                         <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
                         {% endif %}
                     </div>
-                    <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
+                    <div class="textbool_explanation">{{ textbook.explanation|default:""|linebreaksbr }}</div>
                 </div>
                 {% else %}
                     {% if textbook.is_top %}
@@ -116,7 +116,7 @@
                             <video src="{{ textbook.file_content.url }}" controls {% if textbook.thumbnail %}poster="{{ textbook.thumbnail.url }}"{% endif %}></video>
                             {% endif %}
                         </div>
-                        <div class="textbool_explanation">{{ textbook.explanation|default:"" }}</div>
+                        <div class="textbool_explanation">{{ textbook.explanation|default:""|linebreaksbr }}</div>
                     </div>
                     {% endif %}
                 {% endif %}

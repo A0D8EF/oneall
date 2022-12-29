@@ -46,3 +46,14 @@ class MinorCategorySearchForm(forms.ModelForm):
         model   = Textbook
         fields  = ["minor_category"]    
 
+
+class TextbookAdminForm(forms.ModelForm):
+
+    class Meta:
+        model   = Textbook
+        fields  = ["id", "dt", "is_top", "title", "major_category", "minor_category", "explanation"]
+
+        widgets = {
+            "explanation": forms.Textarea(attrs={ "maxlength":str(Textbook.explanation.field.max_length) })
+        }
+        
